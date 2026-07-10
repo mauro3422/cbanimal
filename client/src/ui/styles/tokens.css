@@ -1,0 +1,21 @@
+:root {
+  --ui-bg: rgba(31, 38, 46, 0.88);
+  --ui-bg-soft: rgba(255, 255, 255, 0.9);
+
+  --ui-text: #ffffff;
+  --ui-text-dark: #263238;
+  --ui-muted: #aab7c4;
+
+  --ui-accent: #72d6b3;
+  --ui-accent-hover: #8ce3c4;
+
+  --ui-danger: #e87878;
+
+  --ui-radius-small: 8px;
+  --ui-radius-medium: 14px;
+  --ui-radius-large: 22px;
+
+  --ui-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+  --ui-transition: 160ms ease;
+}

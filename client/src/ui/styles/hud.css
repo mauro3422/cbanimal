@@ -1,0 +1,54 @@
+.player-hud {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 6px 14px;
+
+  background: var(--ui-bg);
+  border-radius: var(--ui-radius-medium);
+
+  box-shadow: var(--ui-shadow);
+}
+
+.player-card__name {
+  font-size: 14px;
+}
+
+.player-card__state {
+  font-size: 11px;
+  color: var(--ui-accent);
+  text-transform: uppercase;
+}
+
+.action-bar {
+  display: flex;
+  gap: 6px;
+}
+
+.action-bar button {
+  padding: 6px 14px;
+
+  font-size: 13px;
+  color: var(--ui-text);
+
+  background: var(--ui-bg);
+  border-radius: var(--ui-radius-medium);
+
+  box-shadow: var(--ui-shadow);
+  transition: background var(--ui-transition);
+}
+
+.action-bar button:hover {
+  background: rgba(31, 38, 46, 0.95);
+}
