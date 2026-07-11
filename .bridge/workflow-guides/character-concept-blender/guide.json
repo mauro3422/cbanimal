@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "name": "character-concept-blender",
+  "title": "CBAnimal Character Concept to Blender",
+  "description": "Project-specific character creation pipeline for CBAnimal: generate consistent anthropomorphic creature views, preserve species and elemental identity, save and normalize references, and prepare low-poly Blender scenes compatible with the shared humanoid rig and Three.js GLB workflow.",
+  "activation": {
+    "keywords": [
+      "cbanimal character",
+      "personaje furry",
+      "criatura",
+      "especie",
+      "nacion elemental",
+      "avatar",
+      "turnaround",
+      "low poly",
+      "blender",
+      "glb",
+      "rig compartido"
+    ],
+    "phrases": [
+      "crear un personaje para cbanimal",
+      "hacer las vistas del personaje furry",
+      "pasar la criatura a blender",
+      "preparar el personaje para el juego",
+      "crear el modelo low poly del personaje"
+    ],
+    "negativeKeywords": [
+      "escenario",
+      "estadio",
+      "arquitectura",
+      "vehiculo",
+      "logo"
+    ],
+    "examples": [
+      "Creemos el primer personaje furry de CBAnimal y pasémoslo a Blender.",
+      "Generá frente, perfil, espalda y tres cuartos de esta criatura elemental.",
+      "Corregí la cola y las marcas para que todas las vistas coincidan antes de modelar."
+    ]
+  },
+  "entrypoint": "GUIDE.md",
+  "phases": {
+    "brief": "templates/character-brief.example.json",
+    "front": "prompts/front.md",
+    "derived-view": "prompts/derived-view.md",
+    "repair-view": "prompts/repair-view.md",
+    "save": "GUIDE.md",
+    "prepare": "GUIDE.md",
+    "blender": "GUIDE.md",
+    "resume": "GUIDE.md"
+  },
+  "recommendedTools": [
+    "image_asset_save",
+    "image_character_views_prepare",
+    "blender_setup_character_references",
+    "blender_viewport_screenshot",
+    "blender_character_loop_status"
+  ],
+  "scopeNotes": "Project guide for C:\\dev\\cbanimal. It overrides the global character-concept-blender guide whenever this project root is supplied."
+}
