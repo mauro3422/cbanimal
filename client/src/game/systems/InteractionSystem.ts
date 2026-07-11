@@ -1,10 +1,19 @@
+import type { Disposable } from "../../core/Disposable";
+import type { InteractionPrompt } from "../../ui/components/InteractionPrompt";
 import type { IInteractable } from "../entities/IInteractable";
 import type { Player } from "../entities/Player";
-import type { InteractionPrompt } from "../../ui/components/InteractionPrompt";
 
-export class InteractionSystem {
+function isEditableTarget(target: EventTarget | null): boolean {
+  return target instanceof HTMLInputElement
+    || target instanceof HTMLTextAreaElement
+    || target instanceof HTMLSelectElement
+    || (target instanceof HTMLElement && target.isContentEditable);
+}
+
+export class InteractionSystem implements Disposable {
   private currentInteractable: IInteractable | null = null;
   private interactionPressed = false;
+  private inputEnabled = true;
 
   private readonly player: Player;
   private readonly interactables: IInteractable[];
@@ -23,22 +32,24 @@ export class InteractionSystem {
     window.addEventListener("keyup", this.handleKeyUp);
   }
 
-  private handleKeyDown = (event: KeyboardEvent): void => {
-    if (event.code === "KeyE" && !this.interactionPressed) {
-      this.interactionPressed = true;
-      this.currentInteractable?.interact(this.player);
-    }
-  };
+  public setEnabled(enabled: boolean): void {
+    this.inputEnabled = enabled;
 
-  private handleKeyUp = (event: KeyboardEvent): void => {
-    if (event.code === "KeyE") {
+    if (!enabled) {
       this.interactionPressed = false;
+      this.currentInteractable = null;
+      this.prompt.hide();
     }
-  };
+  }
 
   public update(): void {
-    this.currentInteractable = null;
+    if (!this.inputEnabled) {
+      this.currentInteractable = null;
+      this.prompt.hide();
+      return;
+    }
 
+    this.currentInteractable = null;
     let closestDistance = Infinity;
 
     for (const interactable of this.interactables) {
@@ -46,7 +57,10 @@ export class InteractionSystem {
         interactable.object.position,
       );
 
-      if (distance < interactable.interactionDistance && distance < closestDistance) {
+      if (
+        distance < interactable.interactionDistance
+        && distance < closestDistance
+      ) {
         closestDistance = distance;
         this.currentInteractable = interactable;
       }
@@ -54,6 +68,33 @@ export class InteractionSystem {
 
     this.updatePrompt();
   }
+
+  public dispose(): void {
+    window.removeEventListener("keydown", this.handleKeyDown);
+    window.removeEventListener("keyup", this.handleKeyUp);
+    this.currentInteractable = null;
+    this.prompt.hide();
+  }
+
+  private handleKeyDown = (event: KeyboardEvent): void => {
+    if (
+      !this.inputEnabled
+      || isEditableTarget(event.target)
+      || event.code !== "KeyE"
+      || this.interactionPressed
+    ) {
+      return;
+    }
+
+    this.interactionPressed = true;
+    this.currentInteractable?.interact(this.player);
+  };
+
+  private handleKeyUp = (event: KeyboardEvent): void => {
+    if (event.code === "KeyE") {
+      this.interactionPressed = false;
+    }
+  };
 
   private updatePrompt(): void {
     if (this.currentInteractable) {

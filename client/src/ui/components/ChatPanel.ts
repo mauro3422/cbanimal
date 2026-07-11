@@ -1,12 +1,12 @@
+import type { Disposable } from "../../core/Disposable";
 import { uiEvents } from "../core/UIEventBus";
 import type { UIState } from "../state/UIState";
 
-export class ChatPanel {
+export class ChatPanel implements Disposable {
   public readonly element: HTMLDivElement;
 
   private readonly messagesEl: HTMLDivElement;
   private readonly inputEl: HTMLInputElement;
-
   private readonly state: UIState;
   private readonly author: string;
 
@@ -24,6 +24,7 @@ export class ChatPanel {
         type="text"
         class="chat-panel__input"
         placeholder="Escribir mensaje..."
+        maxlength="300"
         data-chat-input
       />
     `;
@@ -36,30 +37,9 @@ export class ChatPanel {
       "[data-chat-input]",
     )!;
 
-    this.inputEl.addEventListener(
-      "keydown",
-      this.handleInputKey,
-    );
-
-    this.inputEl.addEventListener(
-      "focus",
-      () => {
-        this.state.isChatOpen = true;
-        uiEvents.emit("ui:focus-changed", {
-          focused: true,
-        });
-      },
-    );
-
-    this.inputEl.addEventListener(
-      "blur",
-      () => {
-        this.state.isChatOpen = false;
-        uiEvents.emit("ui:focus-changed", {
-          focused: false,
-        });
-      },
-    );
+    this.inputEl.addEventListener("keydown", this.handleInputKey);
+    this.inputEl.addEventListener("focus", this.handleFocus);
+    this.inputEl.addEventListener("blur", this.handleBlur);
   }
 
   public open(): void {
@@ -82,21 +62,39 @@ export class ChatPanel {
   }
 
   public addMessage(author: string, text: string): void {
-    const msg = document.createElement("div");
-    msg.className = "chat-panel__message";
+    const messageElement = document.createElement("div");
+    messageElement.className = "chat-panel__message";
 
-    msg.innerHTML = `
-      <span class="chat-panel__message-author">${author}:</span>
-      <span>${text}</span>
-    `;
+    const authorElement = document.createElement("span");
+    authorElement.className = "chat-panel__message-author";
+    authorElement.textContent = `${author}:`;
 
-    this.messagesEl.appendChild(msg);
+    const textElement = document.createElement("span");
+    textElement.textContent = text;
+
+    messageElement.append(authorElement, textElement);
+    this.messagesEl.appendChild(messageElement);
     this.messagesEl.scrollTop = this.messagesEl.scrollHeight;
   }
 
-  private handleInputKey = (
-    event: KeyboardEvent,
-  ): void => {
+  public dispose(): void {
+    this.inputEl.removeEventListener("keydown", this.handleInputKey);
+    this.inputEl.removeEventListener("focus", this.handleFocus);
+    this.inputEl.removeEventListener("blur", this.handleBlur);
+    this.element.remove();
+  }
+
+  private handleFocus = (): void => {
+    this.state.isChatOpen = true;
+    uiEvents.emit("ui:focus-changed", { focused: true });
+  };
+
+  private handleBlur = (): void => {
+    this.state.isChatOpen = false;
+    uiEvents.emit("ui:focus-changed", { focused: false });
+  };
+
+  private handleInputKey = (event: KeyboardEvent): void => {
     if (event.code !== "Enter") {
       return;
     }
@@ -108,9 +106,7 @@ export class ChatPanel {
     }
 
     this.addMessage(this.author, message);
-
     uiEvents.emit("chat:send", { message });
-
     this.inputEl.value = "";
   };
 }

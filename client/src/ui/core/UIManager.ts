@@ -1,15 +1,15 @@
-import { UIState } from "../state/UIState";
-import { uiEvents } from "./UIEventBus";
-
-import { PlayerHUD } from "../components/PlayerHUD";
+import type { Disposable } from "../../core/Disposable";
+import { ChatBubble } from "../components/ChatBubble";
 import { ChatPanel } from "../components/ChatPanel";
 import { EmoteMenu } from "../components/EmoteMenu";
 import { InteractionPrompt } from "../components/InteractionPrompt";
+import { PlayerHUD } from "../components/PlayerHUD";
 import { SettingsMenu } from "../components/SettingsMenu";
 import { ToastNotification } from "../components/ToastNotification";
-import { ChatBubble } from "../components/ChatBubble";
+import { UIState } from "../state/UIState";
+import { uiEvents } from "./UIEventBus";
 
-export class UIManager {
+export class UIManager implements Disposable {
   public readonly root: HTMLDivElement;
   public readonly state: UIState;
 
@@ -21,6 +21,8 @@ export class UIManager {
   public readonly toast: ToastNotification;
   public readonly chatBubble: ChatBubble;
 
+  private readonly unsubscribe: Array<() => void> = [];
+
   constructor(playerName: string) {
     this.state = new UIState();
 
@@ -29,9 +31,9 @@ export class UIManager {
 
     this.hud = new PlayerHUD(playerName);
     this.chatPanel = new ChatPanel(this.state, playerName);
-    this.emoteMenu = new EmoteMenu(this.state);
+    this.emoteMenu = new EmoteMenu(this.state, this.emitFocusState);
     this.interactionPrompt = new InteractionPrompt();
-    this.settingsMenu = new SettingsMenu(this.state);
+    this.settingsMenu = new SettingsMenu(this.state, this.emitFocusState);
     this.toast = new ToastNotification();
     this.chatBubble = new ChatBubble();
 
@@ -46,56 +48,74 @@ export class UIManager {
     );
 
     this.bindEvents();
-
     document.body.appendChild(this.root);
   }
 
+  public dispose(): void {
+    window.removeEventListener("keydown", this.handleGlobalKey);
+
+    for (const unsubscribe of this.unsubscribe) {
+      unsubscribe();
+    }
+    this.unsubscribe.length = 0;
+
+    this.hud.dispose();
+    this.chatPanel.dispose();
+    this.emoteMenu.dispose();
+    this.settingsMenu.dispose();
+    this.toast.dispose();
+    this.chatBubble.dispose();
+    this.root.remove();
+  }
+
   private bindEvents(): void {
-    uiEvents.on("chat:open", () => {
-      this.chatPanel.toggle();
-    });
+    this.unsubscribe.push(
+      uiEvents.on("chat:open", () => {
+        this.chatPanel.toggle();
+      }),
+      uiEvents.on("emote-menu:open", () => {
+        if (this.state.isSettingsOpen) {
+          this.settingsMenu.close();
+        }
 
-    uiEvents.on("emote-menu:open", () => {
-      this.emoteMenu.toggle();
+        this.emoteMenu.toggle();
+      }),
+      uiEvents.on("settings:open", () => {
+        if (this.state.isEmoteMenuOpen) {
+          this.emoteMenu.close();
+        }
 
-      if (this.state.isSettingsOpen) {
-        this.settingsMenu.close();
-      }
-    });
+        this.settingsMenu.toggle();
+      }),
+      uiEvents.on("chat:send", ({ message }) => {
+        console.log(`[Chat] ${message}`);
+      }),
+      uiEvents.on("ui:focus-changed", ({ focused }) => {
+        if (focused) {
+          if (this.state.isEmoteMenuOpen) {
+            this.emoteMenu.close();
+          }
 
-    uiEvents.on("settings:open", () => {
-      this.settingsMenu.toggle();
+          if (this.state.isSettingsOpen) {
+            this.settingsMenu.close();
+          }
+        }
 
-      if (this.state.isEmoteMenuOpen) {
-        this.emoteMenu.close();
-      }
-    });
-
-    uiEvents.on("chat:send", ({ message }) => {
-      // el ChatPanel ya agrega el mensaje, acá solo logueamos
-      console.log(`[Chat] ${message}`);
-    });
-
-    uiEvents.on("ui:focus-changed", ({ focused }) => {
-      if (!focused) {
-        return;
-      }
-
-      if (this.state.isEmoteMenuOpen) {
-        this.emoteMenu.close();
-      }
-
-      if (this.state.isSettingsOpen) {
-        this.settingsMenu.close();
-      }
-    });
+        this.emitFocusState();
+      }),
+    );
 
     window.addEventListener("keydown", this.handleGlobalKey);
   }
 
-  private handleGlobalKey = (
-    event: KeyboardEvent,
-  ): void => {
+  private emitFocusState = (): void => {
+    uiEvents.emit("ui:blocking-changed", {
+      blocked: this.state.isAnyMenuOpen,
+    });
+  };
+
+
+  private handleGlobalKey = (event: KeyboardEvent): void => {
     if (this.state.isChatOpen) {
       if (event.code === "Escape") {
         this.chatPanel.close();

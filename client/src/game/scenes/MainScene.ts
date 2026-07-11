@@ -1,24 +1,52 @@
 import * as THREE from "three";
-import { Player } from "../entities/Player";
+import type { Disposable } from "../../core/Disposable";
+import type { UIManager } from "../../ui/core/UIManager";
+import type { LocalPlayerConfig } from "../config/localPlayerConfig";
 import { BasicInteractable } from "../entities/BasicInteractable";
 import { ChairInteractable } from "../entities/ChairInteractable";
 import type { IInteractable } from "../entities/IInteractable";
+import { Player } from "../entities/Player";
 import { InteractionSystem } from "../systems/InteractionSystem";
-import type { UIManager } from "../../ui/core/UIManager";
 
 const MAP_SIZE = 20;
 const MAP_HALF = MAP_SIZE / 2;
 const MAP_LIMIT = MAP_HALF - 1;
 
 const OBSTACLE_CFG = [
-  { position: [4, 0.75, 3] as const, size: [1, 1.5, 1] as const, color: 0x577590 },
-  { position: [-3, 0.5, -4] as const, size: [2, 1, 1] as const, color: 0x577590 },
-  { position: [-5, 1, 5] as const, size: [1, 2, 2] as const, color: 0x577590 },
+  {
+    position: [4, 0.75, 3] as const,
+    size: [1, 1.5, 1] as const,
+    color: 0x577590,
+  },
+  {
+    position: [-3, 0.5, -4] as const,
+    size: [2, 1, 1] as const,
+    color: 0x577590,
+  },
+  {
+    position: [-5, 1, 5] as const,
+    size: [1, 2, 2] as const,
+    color: 0x577590,
+  },
 ];
 
-export class MainScene {
-  readonly player: Player;
+function disposeMaterial(
+  material: THREE.Material | THREE.Material[],
+): void {
+  if (Array.isArray(material)) {
+    for (const entry of material) {
+      entry.dispose();
+    }
+    return;
+  }
 
+  material.dispose();
+}
+
+export class MainScene implements Disposable {
+  public readonly player: Player;
+
+  private readonly root = new THREE.Group();
   private readonly interactables: IInteractable[] = [];
   private readonly interactionSystem: InteractionSystem;
   private readonly debugHelper: THREE.Box3Helper;
@@ -27,11 +55,14 @@ export class MainScene {
     scene: THREE.Scene,
     camera: THREE.Camera,
     ui: UIManager,
+    playerConfig: LocalPlayerConfig,
   ) {
+    this.root.name = "MainScene";
+    scene.add(this.root);
     scene.background = new THREE.Color(0xbde0fe);
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
-    scene.add(ambientLight);
+    this.root.add(ambientLight);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
     directionalLight.position.set(8, 12, 8);
@@ -44,7 +75,7 @@ export class MainScene {
     directionalLight.shadow.camera.right = 15;
     directionalLight.shadow.camera.top = 15;
     directionalLight.shadow.camera.bottom = -15;
-    scene.add(directionalLight);
+    this.root.add(directionalLight);
 
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(MAP_SIZE, MAP_SIZE),
@@ -55,44 +86,49 @@ export class MainScene {
 
     floor.rotation.x = -Math.PI / 2;
     floor.receiveShadow = true;
-    scene.add(floor);
+    this.root.add(floor);
 
     const colliders: THREE.Box3[] = [];
 
     for (const cfg of OBSTACLE_CFG) {
       const [px, , pz] = cfg.position;
-      const [w, h, d] = cfg.size;
+      const [width, height, depth] = cfg.size;
 
       const box = new THREE.Mesh(
-        new THREE.BoxGeometry(w, h, d),
+        new THREE.BoxGeometry(width, height, depth),
         new THREE.MeshStandardMaterial({ color: cfg.color }),
       );
 
-      box.position.set(px, h / 2, pz);
+      box.position.set(px, height / 2, pz);
       box.castShadow = true;
       box.receiveShadow = true;
+      this.root.add(box);
 
-      scene.add(box);
-
-      const box3 = new THREE.Box3().setFromObject(box);
-      colliders.push(box3);
+      colliders.push(new THREE.Box3().setFromObject(box));
     }
 
-    this.buildTree(scene, new THREE.Vector3(-7, 0, 6), colliders);
-    this.buildPortal(scene);
+    this.buildTree(new THREE.Vector3(-7, 0, 6), colliders);
+    this.buildPortal();
 
-    this.player = new Player(camera, colliders, MAP_LIMIT);
-    scene.add(this.player.object);
+    this.player = new Player(
+      camera,
+      colliders,
+      MAP_LIMIT,
+      playerConfig.model,
+    );
+    this.root.add(this.player.object);
 
     this.debugHelper = new THREE.Box3Helper(
       this.player.getPlayerCollider(),
       0xff0000,
     );
-
     this.debugHelper.visible = ui.state.isDebugEnabled;
-    scene.add(this.debugHelper);
+    this.root.add(this.debugHelper);
 
-    this.buildChair(scene, new THREE.Vector3(5, 0, -4), Math.PI / 4);
+    this.buildChair(
+      new THREE.Vector3(5, 0, -4),
+      Math.PI / 4,
+    );
 
     const interactiveBox = new BasicInteractable(
       new THREE.Vector3(3, 0, 2),
@@ -100,7 +136,7 @@ export class MainScene {
     );
 
     this.interactables.push(interactiveBox);
-    scene.add(interactiveBox.object);
+    this.root.add(interactiveBox.object);
 
     this.interactionSystem = new InteractionSystem(
       this.player,
@@ -109,8 +145,48 @@ export class MainScene {
     );
   }
 
+  public update(deltaTime: number): void {
+    this.player.update(deltaTime);
+    this.debugHelper.box.copy(this.player.getPlayerCollider());
+    this.interactionSystem.update();
+  }
+
+  public getPlayerPosition(): THREE.Vector3 {
+    return this.player.object.position;
+  }
+
+  public setInputEnabled(enabled: boolean): void {
+    this.player.setInputEnabled(enabled);
+    this.interactionSystem.setEnabled(enabled);
+  }
+
+  public toggleDebug(enabled: boolean): void {
+    this.debugHelper.visible = enabled;
+  }
+
+  public dispose(): void {
+    this.interactionSystem.dispose();
+    this.player.dispose();
+
+    this.debugHelper.removeFromParent();
+    this.debugHelper.geometry.dispose();
+    disposeMaterial(this.debugHelper.material);
+
+    this.root.traverse((object) => {
+      if (!(object instanceof THREE.Mesh)) {
+        return;
+      }
+
+      object.geometry.dispose();
+      disposeMaterial(object.material);
+    });
+
+    this.root.clear();
+    this.root.removeFromParent();
+    this.interactables.length = 0;
+  }
+
   private buildTree(
-    scene: THREE.Scene,
     position: THREE.Vector3,
     colliders: THREE.Box3[],
   ): void {
@@ -123,8 +199,7 @@ export class MainScene {
     trunk.position.y = 1.5;
     trunk.castShadow = true;
     trunk.receiveShadow = true;
-
-    scene.add(trunk);
+    this.root.add(trunk);
 
     const crown = new THREE.Mesh(
       new THREE.SphereGeometry(1.2, 8, 6),
@@ -135,15 +210,15 @@ export class MainScene {
     crown.position.y = 3.2;
     crown.castShadow = true;
     crown.receiveShadow = true;
+    this.root.add(crown);
 
-    scene.add(crown);
-
-    const trunkBox = new THREE.Box3().setFromObject(trunk);
-    const crownBox = new THREE.Box3().setFromObject(crown);
-    colliders.push(trunkBox, crownBox);
+    colliders.push(
+      new THREE.Box3().setFromObject(trunk),
+      new THREE.Box3().setFromObject(crown),
+    );
   }
 
-  private buildPortal(scene: THREE.Scene): void {
+  private buildPortal(): void {
     const portal = new THREE.Mesh(
       new THREE.RingGeometry(1, 1.3, 32),
       new THREE.MeshStandardMaterial({
@@ -156,8 +231,7 @@ export class MainScene {
 
     portal.rotation.x = -Math.PI / 2;
     portal.position.set(7, 0.01, 7);
-
-    scene.add(portal);
+    this.root.add(portal);
 
     const inner = new THREE.Mesh(
       new THREE.CircleGeometry(1, 32),
@@ -169,32 +243,15 @@ export class MainScene {
 
     inner.rotation.x = -Math.PI / 2;
     inner.position.set(7, 0.005, 7);
-
-    scene.add(inner);
+    this.root.add(inner);
   }
 
   private buildChair(
-    scene: THREE.Scene,
     position: THREE.Vector3,
     rotation: number,
   ): void {
     const chair = new ChairInteractable(position, rotation);
-
     this.interactables.push(chair);
-    scene.add(chair.object);
-  }
-
-  public update(deltaTime: number): void {
-    this.debugHelper.box.copy(this.player.getPlayerCollider());
-    this.player.update(deltaTime);
-    this.interactionSystem.update();
-  }
-
-  public getPlayerPosition(): THREE.Vector3 {
-    return this.player.object.position;
-  }
-
-  public toggleDebug(enabled: boolean): void {
-    this.debugHelper.visible = enabled;
+    this.root.add(chair.object);
   }
 }

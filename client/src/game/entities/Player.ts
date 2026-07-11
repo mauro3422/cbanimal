@@ -1,9 +1,15 @@
 import * as THREE from "three";
+import type { Disposable } from "../../core/Disposable";
 import { InputManager } from "../input/InputManager";
 import { CharacterModel } from "./CharacterModel";
-import { CharacterState } from "./CharacterState";
+import type { CharacterModelConfig } from "./CharacterModel";
+import { MovementState } from "./MovementState";
+import type { MovementState as MovementStateValue } from "./MovementState";
 
-export class Player {
+const CLICK_TARGET_REACHED_DISTANCE = 0.5;
+const CLICK_TARGET_BLOCK_TIMEOUT = 0.25;
+
+export class Player implements Disposable {
   public readonly object: THREE.Group;
 
   private readonly characterModel: CharacterModel;
@@ -24,16 +30,18 @@ export class Player {
   private readonly rotationEuler = new THREE.Euler();
 
   private moveTarget: THREE.Vector3 | null = null;
+  private blockedTime = 0;
 
-  private currentState: CharacterState = CharacterState.Idle;
+  private movementState: MovementStateValue = MovementState.Idle;
+  private activeEmote: string | null = null;
   private isSitting = false;
-
   private emoteTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(
     camera: THREE.Camera,
     colliders: THREE.Box3[],
     mapLimit: number,
+    modelConfig: CharacterModelConfig | null,
   ) {
     this.camera = camera;
     this.colliders = colliders;
@@ -42,13 +50,11 @@ export class Player {
 
     this.characterModel = new CharacterModel();
     this.object.add(this.characterModel.object);
+    this.updateCollider(this.object.position);
 
-    void this.characterModel.load({
-      url: "/assets/models/characters/axolotl/axolotl.glb",
-      scale: 1,
-      rotationY: 0,
-      yOffset: 0,
-    });
+    if (modelConfig) {
+      void this.characterModel.load(modelConfig);
+    }
   }
 
   public get character(): CharacterModel {
@@ -59,20 +65,34 @@ export class Player {
     return this.playerCollider;
   }
 
-  public getState(): CharacterState {
-    return this.currentState;
+  public getMovementState(): MovementStateValue {
+    return this.movementState;
+  }
+
+  public getActiveEmote(): string | null {
+    return this.activeEmote;
   }
 
   public setInputEnabled(enabled: boolean): void {
     this.input.setEnabled(enabled);
+
+    if (!enabled) {
+      this.clearMoveTarget();
+      this.movementDirection.set(0, 0, 0);
+
+      if (!this.isSitting && !this.activeEmote) {
+        this.setMovementState(MovementState.Idle);
+      }
+    }
   }
 
   public setMoveTarget(target: THREE.Vector3): void {
-    if (this.isSitting || this.emoteTimer) {
+    if (this.isSitting || this.activeEmote) {
       return;
     }
 
     this.moveTarget = target.clone();
+    this.blockedTime = 0;
 
     this.moveTarget.x = THREE.MathUtils.clamp(
       this.moveTarget.x,
@@ -88,6 +108,7 @@ export class Player {
 
   public clearMoveTarget(): void {
     this.moveTarget = null;
+    this.blockedTime = 0;
   }
 
   public playEmote(emoteId: string): void {
@@ -99,15 +120,30 @@ export class Player {
       clearTimeout(this.emoteTimer);
     }
 
-    this.characterModel.play(emoteId, 0.1);
+    this.clearMoveTarget();
+    this.movementDirection.set(0, 0, 0);
+    this.setMovementState(MovementState.Idle);
+    this.activeEmote = emoteId;
+
+    if (this.characterModel.isLoaded) {
+      const animationName = this.resolveEmoteAnimation(emoteId);
+
+      if (animationName) {
+        this.characterModel.play(animationName, 0.1);
+      } else {
+        console.warn(
+          `No hay animación disponible para el emote "${emoteId}".`,
+        );
+      }
+    }
 
     this.emoteTimer = setTimeout(() => {
-      if (!this.isSitting) {
-        this.currentState = CharacterState.Idle;
-        this.characterModel.setState(CharacterState.Idle);
-      }
-
+      this.activeEmote = null;
       this.emoteTimer = null;
+
+      if (!this.isSitting) {
+        this.setMovementState(MovementState.Idle, true);
+      }
     }, 3000);
   }
 
@@ -116,7 +152,7 @@ export class Player {
     sitRotation: number,
   ): void {
     this.isSitting = true;
-    this.moveTarget = null;
+    this.clearMoveTarget();
     this.movementDirection.set(0, 0, 0);
 
     this.object.position.copy(sitPosition);
@@ -126,86 +162,51 @@ export class Player {
     this.targetQuaternion.setFromEuler(this.rotationEuler);
     this.object.quaternion.copy(this.targetQuaternion);
 
-    this.currentState = CharacterState.Sitting;
-    this.characterModel.setState(CharacterState.Sitting);
+    this.updateCollider(this.object.position);
+    this.setMovementState(MovementState.Sitting);
   }
 
   public exitSitState(): void {
     this.isSitting = false;
-    this.currentState = CharacterState.Idle;
-    this.characterModel.setState(CharacterState.Idle);
+    this.setMovementState(MovementState.Idle);
   }
 
   public update(deltaTime: number): void {
     this.characterModel.update(deltaTime);
 
-    if (this.isSitting || this.emoteTimer) {
+    if (this.isSitting || this.activeEmote) {
       return;
     }
 
-    if (this.moveTarget) {
+    const input = this.input.getMovementInput();
+
+    if (input.lengthSq() > 0) {
+      this.clearMoveTarget();
+      this.setMovementDirectionFromInput(input);
+    } else if (this.moveTarget) {
       this.movementDirection
         .copy(this.moveTarget)
         .sub(this.object.position);
-
       this.movementDirection.y = 0;
 
-      if (this.movementDirection.length() < 0.5) {
-        this.moveTarget = null;
+      if (
+        this.movementDirection.length()
+        < CLICK_TARGET_REACHED_DISTANCE
+      ) {
+        this.clearMoveTarget();
         this.movementDirection.set(0, 0, 0);
-      } else {
-        this.movementDirection.normalize();
-      }
-    } else {
-      const input = this.input.getMovementInput();
-
-      if (input.lengthSq() === 0) {
-        if (this.currentState !== CharacterState.Idle) {
-          this.currentState = CharacterState.Idle;
-          this.characterModel.setState(CharacterState.Idle);
-        }
-
+        this.setMovementState(MovementState.Idle);
         return;
       }
 
-      this.camera.getWorldDirection(this.cameraForward);
-
-      this.cameraForward.y = 0;
-      this.cameraForward.normalize();
-
-      this.cameraRight
-        .crossVectors(
-          this.cameraForward,
-          this.camera.up,
-        )
-        .normalize();
-
-      this.movementDirection
-        .set(0, 0, 0)
-        .addScaledVector(
-          this.cameraForward,
-          input.y,
-        )
-        .addScaledVector(
-          this.cameraRight,
-          input.x,
-        )
-        .normalize();
-    }
-
-    const isMoving = this.movementDirection.lengthSq() > 0;
-
-    if (isMoving) {
-      if (this.currentState !== CharacterState.Walking) {
-        this.currentState = CharacterState.Walking;
-        this.characterModel.setState(CharacterState.Walking);
-      }
+      this.movementDirection.normalize();
     } else {
-      if (this.currentState !== CharacterState.Idle) {
-        this.currentState = CharacterState.Idle;
-        this.characterModel.setState(CharacterState.Idle);
-      }
+      this.movementDirection.set(0, 0, 0);
+      this.setMovementState(MovementState.Idle);
+      return;
     }
+
+    this.setMovementState(MovementState.Walking);
 
     const newPosition = this.object.position.clone();
     newPosition.x += this.movementDirection.x * this.speed * deltaTime;
@@ -225,33 +226,102 @@ export class Player {
     this.updateCollider(newPosition);
 
     const hasCollision = this.colliders.some(
-      (collider) =>
-        this.playerCollider.intersectsBox(collider),
+      (collider) => this.playerCollider.intersectsBox(collider),
     );
 
-    if (!hasCollision) {
-      this.object.position.copy(newPosition);
+    if (hasCollision) {
+      this.updateCollider(this.object.position);
+
+      if (this.moveTarget) {
+        this.blockedTime += deltaTime;
+
+        if (this.blockedTime >= CLICK_TARGET_BLOCK_TIMEOUT) {
+          this.clearMoveTarget();
+          this.movementDirection.set(0, 0, 0);
+          this.setMovementState(MovementState.Idle);
+        }
+      }
+
+      return;
     }
 
-    if (isMoving) {
-      const targetRotation = Math.atan2(
-        this.movementDirection.x,
-        this.movementDirection.z,
-      );
-
-      this.rotationEuler.set(0, targetRotation, 0);
-      this.targetQuaternion.setFromEuler(this.rotationEuler);
-
-      this.object.quaternion.slerp(
-        this.targetQuaternion,
-        1 - Math.pow(0.001, deltaTime),
-      );
-    }
+    this.blockedTime = 0;
+    this.object.position.copy(newPosition);
+    this.rotateTowardsMovement(deltaTime);
   }
 
-  private updateCollider(
-    position: THREE.Vector3,
+  public dispose(): void {
+    if (this.emoteTimer) {
+      clearTimeout(this.emoteTimer);
+      this.emoteTimer = null;
+    }
+
+    this.input.dispose();
+    this.characterModel.dispose();
+    this.object.removeFromParent();
+    this.activeEmote = null;
+    this.clearMoveTarget();
+  }
+
+  private setMovementDirectionFromInput(input: THREE.Vector2): void {
+    this.camera.getWorldDirection(this.cameraForward);
+    this.cameraForward.y = 0;
+    this.cameraForward.normalize();
+
+    this.cameraRight
+      .crossVectors(this.cameraForward, this.camera.up)
+      .normalize();
+
+    this.movementDirection
+      .set(0, 0, 0)
+      .addScaledVector(this.cameraForward, input.y)
+      .addScaledVector(this.cameraRight, input.x)
+      .normalize();
+  }
+
+  private rotateTowardsMovement(deltaTime: number): void {
+    const targetRotation = Math.atan2(
+      this.movementDirection.x,
+      this.movementDirection.z,
+    );
+
+    this.rotationEuler.set(0, targetRotation, 0);
+    this.targetQuaternion.setFromEuler(this.rotationEuler);
+
+    this.object.quaternion.slerp(
+      this.targetQuaternion,
+      1 - Math.pow(0.001, deltaTime),
+    );
+  }
+
+  private setMovementState(
+    state: MovementStateValue,
+    forceAnimation = false,
   ): void {
+    if (this.movementState === state && !forceAnimation) {
+      return;
+    }
+
+    this.movementState = state;
+    this.characterModel.setMovementState(state);
+  }
+
+  private resolveEmoteAnimation(emoteId: string): string | null {
+    if (this.characterModel.hasAnimation(emoteId)) {
+      return emoteId;
+    }
+
+    if (this.characterModel.hasAnimation("wave")) {
+      console.warn(
+        `El emote "${emoteId}" no existe; se usará "wave" como fallback.`,
+      );
+      return "wave";
+    }
+
+    return null;
+  }
+
+  private updateCollider(position: THREE.Vector3): void {
     this.playerCollider.min.set(
       position.x - this.colliderHalfSize.x,
       position.y,
