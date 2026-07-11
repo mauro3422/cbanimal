@@ -195,6 +195,8 @@ Expected result:
 
 Then capture a viewport image and inspect alignment before beginning geometry.
 
+Once renderable geometry exists, use `blender_review_bundle` instead of issuing separate screenshot calls. Target the model collection explicitly, request at least front, right, back, and three-quarter views, inspect the attached contact sheet, and treat the returned bounds, object counts, topology totals, materials, collection visibility, armatures, actions, warnings, hashes, and scene-restoration result as the evidence bundle for the next edit. Add left, rear-three-quarter, or top views when the silhouette, tail, or asymmetry requires them.
+
 ## Phase 7 — Iteration loop
 
 ```text

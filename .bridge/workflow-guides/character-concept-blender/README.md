@@ -23,7 +23,9 @@ image_character_views_prepare
 blender_setup_character_references
   -> assets/concepts/<slug>/blender/<slug>_references.blend
 blender_viewport_screenshot
-  -> visual alignment review
+  -> initial reference-alignment review
+blender_review_bundle
+  -> multi-angle model renders, contact sheet, and structured geometry/rig/animation diagnostics
 ```
 
 ## Why generation and persistence are separate

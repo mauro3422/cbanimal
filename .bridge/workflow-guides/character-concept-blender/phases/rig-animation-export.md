@@ -36,6 +36,8 @@ Before export, verify through `blender_execute_code` or equivalent scene inspect
 
 Do not infer movement from keyframes alone. Evaluate the scene at two frames and compare actual world transforms.
 
+After numerical validation, set representative keyed poses and call `blender_review_bundle` for each important state. At minimum review two opposite walking contacts, the seated pose, and the raised-hand wave pose from front, right, and three-quarter views. Check the returned world bounds for floor penetration or unexpected silhouette growth, and retain the contact sheets and manifests as pose evidence before export.
+
 ## GLB export
 
 Export a versioned binary glTF into the game public asset directory. Use selection or collection filtering so only runtime assets are exported.

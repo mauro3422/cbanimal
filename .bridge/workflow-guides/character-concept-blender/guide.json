@@ -76,6 +76,7 @@
     "blender_scene_info",
     "blender_execute_code",
     "blender_viewport_screenshot",
+    "blender_review_bundle",
     "python_validate",
     "read_text_file",
     "write_text_file",

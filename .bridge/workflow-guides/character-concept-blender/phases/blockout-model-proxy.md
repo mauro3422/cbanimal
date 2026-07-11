@@ -41,7 +41,7 @@ Never hide an armature collection if doing so also hides child meshes. Prefer hi
 
 ## Review artifacts
 
-Produce independent front, side, and three-quarter renders. Use Blender rendering rather than relying solely on a viewport screenshot because the bridge framebuffer may be stale or repeat an earlier view.
+Use `blender_review_bundle` to produce independent orthographic front, right, back, and three-quarter renders in one call; add left, rear-three-quarter, or top when the silhouette requires them. Target `BLOCKOUT` or `MODEL_PROXY` explicitly, inspect the attached contact sheet, and retain the manifest with bounds, topology totals, materials, visibility, rig/action context, warnings, hashes, and restoration status. Use Blender rendering rather than relying solely on a viewport screenshot because the bridge framebuffer may be stale or repeat an earlier view.
 
 A model-proxy checkpoint should record:
 
