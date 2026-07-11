@@ -68,8 +68,11 @@ Initial game target:
 
 - ChatGPT image generation creates or edits concept images.
 - Bridge MCP persists images, prepares reference sets, controls Blender, validates outputs, and updates the repository.
+- Arbitrary binary assets must use `binary_file_write` for small payloads or the resumable `binary_upload_begin` → `binary_upload_append` → `binary_upload_status` → `binary_upload_finish` flow for large payloads. Do not route image/model base64 through `write_text_file`.
+- Verify completed transfers with `binary_file_info`, including expected byte count and SHA-256 when known.
 - Workflow guides define when and how those tools should be used.
 - `AGENTS.md` is also available for Codex and other coding agents, but ChatGPT web should load this project through `project_context_load`.
+- A conversation may retain an older cached connector catalog after the Bridge is upgraded. If a runtime tool is missing from the chat catalog, reopen the connector or continue in a new Project chat before inventing a manual transport workaround.
 
 ## Stable validation commands
 

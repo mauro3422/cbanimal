@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "slug": "chatgpt-fox",
+  "workingName": "ChatGPT Fox",
+  "status": "concept-approved-for-reference-loop",
+  "species": "anthropomorphic fox",
+  "bodyProportions": "cute stylized humanoid, large head, compact torso, short limbs, readable paws",
+  "headToBodyRatio": "approximately 1:3.2",
+  "palette": [
+    "teal",
+    "cyan",
+    "white",
+    "dark teal accents"
+  ],
+  "eyes": "large friendly cyan/teal eyes",
+  "ears": "large pointed fox ears with dark teal tips",
+  "muzzle": "short rounded white muzzle",
+  "handsFeet": "simplified rounded paws",
+  "tail": "one large fluffy tail, teal with white/light tip",
+  "markings": "subtle glowing cyan circuit/AI motifs on limbs and body",
+  "clothingAccessories": "none",
+  "materialStyle": "soft semi-cartoon 3D-like fur shapes, low-poly-friendly silhouette",
+  "targetTriangles": "8000-12000",
+  "rigFamily": "humanoid shared rig plus tail bones",
+  "rootMotion": false,
+  "notes": [
+    "These transferred JPGs are 320x400 derivatives suitable for Blender reference/blockout. Replace with higher-resolution approved sources before detailed texturing or close topology work."
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "stage": "views_normalized",
+  "baseName": "chatgpt_fox",
+  "outputDir": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\prepared",
+  "settings": {
+    "targetWidth": 768,
+    "targetHeight": 960,
+    "backgroundThreshold": 14,
+    "cropMargin": 0.05,
+    "canvasMargin": 0.07,
+    "outputFormat": "jpeg",
+    "jpegQuality": 92
+  },
+  "crossViewQuality": {
+    "subjectHeightRatioSpread": 0.0625,
+    "warnings": []
+  },
+  "items": [
+    {
+      "source": {
+        "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\source\\chatgpt_fox_front.jpg",
+        "width": 192,
+        "height": 240,
+        "sha256": "14729c14a70fca1c3e67b6c374b67f1a42fc73984f78f379bd1f0479bddb990b"
+      },
+      "output": {
+        "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\prepared\\chatgpt_fox_front.jpg",
+        "width": 768,
+        "height": 960,
+        "bytes": 45603,
+        "sha256": "f2c645797f8a8e7c7573456b42d981b6d08d917d54c58911a84431151ffdd710",
+        "format": "jpeg"
+      },
+      "normalization": {
+        "rawForegroundBbox": [
+          56,
+          5,
+          148,
+          216
+        ],
+        "cropBbox": [
+          52,
+          0,
+          152,
+          226
+        ],
+        "resizedWidth": 365,
+        "resizedHeight": 825,
+        "pasteX": 201,
+        "pasteY": 68,
+        "threshold": 14.0,
+        "cropMargin": 0.05,
+        "canvasMargin": 0.07
+      },
+      "quality": {
+        "subjectWidthRatio": 0.4792,
+        "subjectHeightRatio": 0.8792,
+        "touchesSourceEdge": {
+          "left": false,
+          "top": false,
+          "right": false,
+          "bottom": false
+        },
+        "warnings": []
+      },
+      "role": "front"
+    },
+    {
+      "source": {
+        "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\source\\chatgpt_fox_side.jpg",
+        "width": 192,
+        "height": 240,
+        "sha256": "39d55d4b7559820e79fe0addef9a0483a5e39e16906d4d629561bd96f7abaefa"
+      },
+      "output": {
+        "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\prepared\\chatgpt_fox_side.jpg",
+        "width": 768,
+        "height": 960,
+        "bytes": 35587,
+        "sha256": "8d091d5d90aac0e69812420e884941924064700f77976373bf43fdd9064c45e0",
+        "format": "jpeg"
+      },
+      "normalization": {
+        "rawForegroundBbox": [
+          40,
+          8,
+          134,
+          234
+        ],
+        "cropBbox": [
+          36,
+          0,
+          138,
+          240
+        ],
+        "resizedWidth": 351,
+        "resizedHeight": 825,
+        "pasteX": 208,
+        "pasteY": 68,
+        "threshold": 14.0,
+        "cropMargin": 0.05,
+        "canvasMargin": 0.07
+      },
+      "quality": {
+        "subjectWidthRatio": 0.4896,
+        "subjectHeightRatio": 0.9417,
+        "touchesSourceEdge": {
+          "left": false,
+          "top": false,
+          "right": false,
+          "bottom": false
+        },
+        "warnings": []
+      },
+      "role": "side"
+    },
+    {
+      "source": {
+        "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\source\\chatgpt_fox_back.jpg",
+        "width": 192,
+        "height": 240,
+        "sha256": "b35e82e1aa7a2f353fd6210fb47b70f65f75a3c03166ff847f94e756ecf4b34b"
+      },
+      "output": {
+        "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\prepared\\chatgpt_fox_back.jpg",
+        "width": 768,
+        "height": 960,
+        "bytes": 38597,
+        "sha256": "84b0f217fc654a014ae9b4901c9eddf5ce108ebf8e3571394f15dd4d65099a0d",
+        "format": "jpeg"
+      },
+      "normalization": {
+        "rawForegroundBbox": [
+          56,
+          0,
+          134,
+          218
+        ],
+        "cropBbox": [
+          53,
+          0,
+          137,
+          228
+        ],
+        "resizedWidth": 304,
+        "resizedHeight": 825,
+        "pasteX": 232,
+        "pasteY": 68,
+        "threshold": 14.0,
+        "cropMargin": 0.05,
+        "canvasMargin": 0.07
+      },
+      "quality": {
+        "subjectWidthRatio": 0.4062,
+        "subjectHeightRatio": 0.9083,
+        "touchesSourceEdge": {
+          "left": false,
+          "top": true,
+          "right": false,
+          "bottom": false
+        },
+        "warnings": [
+          "subject_touches_source_edge"
+        ]
+      },
+      "role": "back"
+    },
+    {
+      "source": {
+        "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\source\\chatgpt_fox_three_quarter.jpg",
+        "width": 192,
+        "height": 240,
+        "sha256": "4ea41af97005643b20ded63a1a26089ea77c8958754bfed38476b8b01a54fa65"
+      },
+      "output": {
+        "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\prepared\\chatgpt_fox_three-quarter.jpg",
+        "width": 768,
+        "height": 960,
+        "bytes": 45658,
+        "sha256": "ffc81d046bdfb9e27d25fc686843876ed00e1c525f0b835780eceaac342c55e2",
+        "format": "jpeg"
+      },
+      "normalization": {
+        "rawForegroundBbox": [
+          48,
+          0,
+          156,
+          224
+        ],
+        "cropBbox": [
+          43,
+          0,
+          161,
+          235
+        ],
+        "resizedWidth": 414,
+        "resizedHeight": 825,
+        "pasteX": 177,
+        "pasteY": 68,
+        "threshold": 14.0,
+        "cropMargin": 0.05,
+        "canvasMargin": 0.07
+      },
+      "quality": {
+        "subjectWidthRatio": 0.5625,
+        "subjectHeightRatio": 0.9333,
+        "touchesSourceEdge": {
+          "left": false,
+          "top": true,
+          "right": false,
+          "bottom": false
+        },
+        "warnings": [
+          "subject_touches_source_edge"
+        ]
+      },
+      "role": "three-quarter"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "stage": "ready_for_blockout",
+  "characterName": "ChatGPT Fox",
+  "outputBlend": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\chatgpt_fox_references.blend",
+  "blenderVersion": "5.1.2",
+  "settings": {
+    "height": 6,
+    "opacity": 0.65,
+    "frontAndSideVisible": true,
+    "backAndThreeQuarterHidden": true
+  },
+  "images": {
+    "front": {
+      "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\prepared\\chatgpt_fox_front.jpg",
+      "bytes": 45603,
+      "sha256": "f2c645797f8a8e7c7573456b42d981b6d08d917d54c58911a84431151ffdd710"
+    },
+    "side": {
+      "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\prepared\\chatgpt_fox_side.jpg",
+      "bytes": 35587,
+      "sha256": "8d091d5d90aac0e69812420e884941924064700f77976373bf43fdd9064c45e0"
+    },
+    "back": {
+      "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\prepared\\chatgpt_fox_back.jpg",
+      "bytes": 38597,
+      "sha256": "84b0f217fc654a014ae9b4901c9eddf5ce108ebf8e3571394f15dd4d65099a0d"
+    },
+    "three_quarter": {
+      "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\prepared\\chatgpt_fox_three-quarter.jpg",
+      "bytes": 45658,
+      "sha256": "ffc81d046bdfb9e27d25fc686843876ed00e1c525f0b835780eceaac342c55e2"
+    }
+  },
+  "objects": {
+    "front": "REF_FRONT",
+    "side": "REF_SIDE",
+    "back": "REF_BACK",
+    "three_quarter": "REF_THREE_QUARTER"
+  },
+  "output": {
+    "path": "C:\\dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\chatgpt_fox_references.blend",
+    "bytes": 92421,
+    "sha256": "d32867688a9b816b37e6ff0b03437928492bd7e3f67c2233742f026d289b1da9"
+  },
+  "updatedAt": "2026-07-11T04:31:56.698656+00:00",
+  "open": {
+    "requested": true,
+    "port": 9877,
+    "result": {
+      "launched": true,
+      "pid": 27120,
+      "executable": "D:\\SteamLibrary\\steamapps\\common\\Blender\\blender.exe",
+      "blendFile": "C:\\dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\chatgpt_fox_references.blend",
+      "startupScript": "C:\\Dev\\bridge-mcp\\integrations\\blender\\startup.py",
+      "host": "127.0.0.1",
+      "port": 9877
+    },
+    "verification": {
+      "ok": true,
+      "bridge": "mauro-blender-bridge",
+      "version": "0.1.0",
+      "blender_version": "5.1.2",
+      "file": "C:\\dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\chatgpt_fox_references.blend"
+    }
+  },
+  "review": {
+    "decision": "accepted_for_low_poly_blockout",
+    "frontVisualReview": {
+      "passed": true,
+      "notes": [
+        "full body visible",
+        "readable silhouette",
+        "feet visible"
+      ]
+    },
+    "sideOrthographicCapture": {
+      "passed": true
+    },
+    "crossViewSubjectHeightSpread": 0.0625,
+    "blockingWarnings": [],
+    "nonBlockingWarnings": [
+      "back proxy touches the source top edge",
+      "three-quarter proxy touches the source top edge",
+      "current source views are transfer proxies and must be replaced before detailed modeling or texturing"
+    ],
+    "captures": {
+      "initial": {
+        "path": "C:\\dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\viewport.png",
+        "bytes": 231168,
+        "sha256": "6dd0174400099500409edbf9549e6fa52aa09a8a6500b682b3d3cf90e6e736a4"
+      },
+      "front": {
+        "path": "C:\\dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\viewport_front.png",
+        "bytes": 83967,
+        "sha256": "362ddc81d941f5fb49c2c18db7b4402de37efca3294a29b272a34ef1d8bfee01"
+      },
+      "side": {
+        "path": "C:\\dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\viewport_side.png",
+        "bytes": 81002,
+        "sha256": "f5e3aa4ba60be1e972d2ec3a07cde8b8b3892b9c20d697d1134de76580d4da2f"
+      }
+    }
+  },
+  "nextStep": "Create a mirrored low-poly blockout in a separate BLOCKOUT collection while preserving REFERENCES."
+}

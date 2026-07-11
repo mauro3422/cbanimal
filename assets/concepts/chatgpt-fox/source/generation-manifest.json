@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "collectionName": "ChatGPT Fox turnaround",
+  "createdAt": "2026-07-11",
+  "stage": "views_saved",
+  "mode": "quality-derived",
+  "items": [
+    {
+      "role": "front",
+      "filename": "chatgpt_fox_front.jpg",
+      "width": 320,
+      "height": 400,
+      "bytes": 6737,
+      "sha256": "4dd131a0e49bca4d56887879ae9c73209f23569967ebf2763b4f2aa586531c3f",
+      "source": "ChatGPT image generation; 320x400 transfer derivative from approved view",
+      "proxyPath": "source/chatgpt_fox_front.jpg",
+      "proxyBytes": 3707,
+      "proxySha256": "14729c14a70fca1c3e67b6c374b67f1a42fc73984f78f379bd1f0479bddb990b"
+    },
+    {
+      "role": "side",
+      "filename": "chatgpt_fox_side.jpg",
+      "width": 320,
+      "height": 400,
+      "bytes": 5752,
+      "sha256": "8c6a2c987eabdeae8979bb78cd1f02be08f86460f5955c63ec9bc722305067e7",
+      "source": "ChatGPT image generation; 320x400 transfer derivative from approved view",
+      "proxyPath": "source/chatgpt_fox_side.jpg",
+      "proxyBytes": 3260,
+      "proxySha256": "39d55d4b7559820e79fe0addef9a0483a5e39e16906d4d629561bd96f7abaefa"
+    },
+    {
+      "role": "back",
+      "filename": "chatgpt_fox_back.jpg",
+      "width": 320,
+      "height": 400,
+      "bytes": 5781,
+      "sha256": "b545d1774f343b31c6bca49d9c1b5befcef371b058619b2e6448eaf2e773d8ad",
+      "source": "ChatGPT image generation; 320x400 transfer derivative from approved view",
+      "proxyPath": "source/chatgpt_fox_back.jpg",
+      "proxyBytes": 3335,
+      "proxySha256": "b35e82e1aa7a2f353fd6210fb47b70f65f75a3c03166ff847f94e756ecf4b34b"
+    },
+    {
+      "role": "three-quarter",
+      "filename": "chatgpt_fox_three_quarter.jpg",
+      "width": 320,
+      "height": 400,
+      "bytes": 7076,
+      "sha256": "3f890c4b5bb5961d17facbc59fc5d8a7a62a2f85d23e87c031178abf3813e4a5",
+      "source": "ChatGPT image generation; 320x400 transfer derivative from approved view",
+      "proxyPath": "source/chatgpt_fox_three_quarter.jpg",
+      "proxyBytes": 3911,
+      "proxySha256": "4ea41af97005643b20ded63a1a26089ea77c8958754bfed38476b8b01a54fa65"
+    }
+  ],
+  "notes": [
+    "Four separate approved views recovered from the long ChatGPT session.",
+    "This bundle intentionally uses lightweight 320x400 derivatives for reliable transfer into MauroPrime."
+  ],
+  "transferProxy": {
+    "isProxy": true,
+    "dimensions": [
+      192,
+      240
+    ],
+    "purpose": "Blender reference setup and low-poly blockout only",
+    "replaceBeforeDetailedModeling": true,
+    "sourceConversation": "ChatGPT Juego session 2026-07-10/11"
+  }
+}
