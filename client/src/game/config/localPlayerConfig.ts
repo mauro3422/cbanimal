@@ -6,7 +6,7 @@ export interface LocalPlayerConfig {
   model: CharacterModelConfig | null;
 }
 
-const DEFAULT_PLAYER_MODEL_URL = "/models/chatgpt-fox-proxy-v2.glb";
+const DEFAULT_PLAYER_MODEL_URL = "/models/chatgpt-fox-proxy-v5.glb";
 const configuredModelUrl = import.meta.env.VITE_PLAYER_MODEL_URL?.trim();
 const playerModelUrl = configuredModelUrl || DEFAULT_PLAYER_MODEL_URL;
 

@@ -1,0 +1,2050 @@
+{
+  "stage": "review_bundle_created",
+  "created_at": "2026-07-11T15:13:41.134706+00:00",
+  "blender": {
+    "version": "5.1.2",
+    "file": "C:\\dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\chatgpt_fox_proxy_v5.blend",
+    "scene": "ChatGPT Fox",
+    "frame": 1
+  },
+  "request": {
+    "views": [
+      "front",
+      "right",
+      "back",
+      "left",
+      "three-quarter",
+      "rear-three-quarter",
+      "top"
+    ],
+    "resolution": 768,
+    "margin": 1.14,
+    "transparent_background": false,
+    "target_collections": [
+      "MODEL_PROXY"
+    ],
+    "target_objects": []
+  },
+  "bounds": {
+    "minimum": [
+      -1.287113,
+      -0.929337,
+      -0.0215
+    ],
+    "maximum": [
+      1.742998,
+      1.584549,
+      6.155001
+    ],
+    "center": [
+      0.227943,
+      0.327606,
+      3.066751
+    ],
+    "dimensions": [
+      3.030112,
+      2.513886,
+      6.176501
+    ]
+  },
+  "geometry": {
+    "totals": {
+      "objects": 47,
+      "mesh_objects": 47,
+      "vertices": 994,
+      "edges": 2306,
+      "polygons": 1404,
+      "triangles": 1780
+    },
+    "materials": [
+      "FOX_CYAN_V2",
+      "FOX_DARK_TEAL_V2",
+      "FOX_TEAL_V2",
+      "FOX_WHITE_V2"
+    ],
+    "non_applied_scale": [],
+    "negative_scale": [],
+    "missing_materials": [],
+    "ngon_objects": []
+  },
+  "objects": [
+    {
+      "name": "MDL_HEAD",
+      "type": "MESH",
+      "location": [
+        0.0,
+        -0.34,
+        0.0
+      ],
+      "rotation_euler": [
+        -1.570796,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "head",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 42,
+        "edges": 120,
+        "polygons": 80,
+        "triangles": 80,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_CHEEK_L",
+      "type": "MESH",
+      "location": [
+        -0.36,
+        -0.57,
+        0.575
+      ],
+      "rotation_euler": [
+        -1.570796,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "head",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_WHITE_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_CHEEK_R",
+      "type": "MESH",
+      "location": [
+        0.36,
+        -0.57,
+        0.575
+      ],
+      "rotation_euler": [
+        -1.570796,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "head",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_WHITE_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_MUZZLE",
+      "type": "MESH",
+      "location": [
+        -0.000654,
+        -0.625015,
+        0.635
+      ],
+      "rotation_euler": [
+        -1.570796,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "head",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 42,
+        "edges": 120,
+        "polygons": 80,
+        "triangles": 80,
+        "ngons": 0,
+        "materials": [
+          "FOX_WHITE_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_NOSE",
+      "type": "MESH",
+      "location": [
+        -0.000654,
+        -0.615015,
+        0.88
+      ],
+      "rotation_euler": [
+        -1.570796,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "head",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_DARK_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_CHEST_PATCH",
+      "type": "MESH",
+      "location": [
+        0.0,
+        -0.5,
+        0.485
+      ],
+      "rotation_euler": [
+        -1.570796,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "chest",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_WHITE_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_EAR_L",
+      "type": "MESH",
+      "location": [
+        -0.035145,
+        -0.370195,
+        -0.012249
+      ],
+      "rotation_euler": [
+        -1.400115,
+        -0.347034,
+        -0.410296
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "ear.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 18,
+        "edges": 40,
+        "polygons": 24,
+        "triangles": 32,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_INNER_EAR_L",
+      "type": "MESH",
+      "location": [
+        -0.112661,
+        -0.424237,
+        0.154718
+      ],
+      "rotation_euler": [
+        -1.400115,
+        -0.347034,
+        -0.410296
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "ear.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 18,
+        "edges": 40,
+        "polygons": 24,
+        "triangles": 32,
+        "ngons": 0,
+        "materials": [
+          "FOX_DARK_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_EAR_TIP_L",
+      "type": "MESH",
+      "location": [
+        -0.045636,
+        -0.092588,
+        -0.017978
+      ],
+      "rotation_euler": [
+        -1.400115,
+        -0.347034,
+        -0.410296
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "ear.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 18,
+        "edges": 40,
+        "polygons": 24,
+        "triangles": 32,
+        "ngons": 0,
+        "materials": [
+          "FOX_DARK_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_EYE_L",
+      "type": "MESH",
+      "location": [
+        -0.31,
+        -0.2,
+        0.727
+      ],
+      "rotation_euler": [
+        -1.570796,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "head",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_DARK_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_PUPIL_L",
+      "type": "MESH",
+      "location": [
+        -0.31,
+        -0.2,
+        0.785
+      ],
+      "rotation_euler": [
+        -1.570796,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "head",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_CYAN_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_EAR_R",
+      "type": "MESH",
+      "location": [
+        0.032681,
+        -0.367046,
+        -0.011176
+      ],
+      "rotation_euler": [
+        -1.400115,
+        0.347034,
+        0.410296
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "ear.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 18,
+        "edges": 40,
+        "polygons": 24,
+        "triangles": 32,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_INNER_EAR_R",
+      "type": "MESH",
+      "location": [
+        0.110722,
+        -0.421329,
+        0.155572
+      ],
+      "rotation_euler": [
+        -1.400115,
+        0.347034,
+        0.410296
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "ear.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 18,
+        "edges": 40,
+        "polygons": 24,
+        "triangles": 32,
+        "ngons": 0,
+        "materials": [
+          "FOX_DARK_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_EAR_TIP_R",
+      "type": "MESH",
+      "location": [
+        0.042798,
+        -0.089135,
+        -0.016747
+      ],
+      "rotation_euler": [
+        -1.400115,
+        0.347034,
+        0.410296
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "ear.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 18,
+        "edges": 40,
+        "polygons": 24,
+        "triangles": 32,
+        "ngons": 0,
+        "materials": [
+          "FOX_DARK_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_EYE_R",
+      "type": "MESH",
+      "location": [
+        0.31,
+        -0.2,
+        0.727
+      ],
+      "rotation_euler": [
+        -1.570796,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "head",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_DARK_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_PUPIL_R",
+      "type": "MESH",
+      "location": [
+        0.31,
+        -0.2,
+        0.785
+      ],
+      "rotation_euler": [
+        -1.570796,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "head",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_CYAN_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_SHOULDER_L",
+      "type": "MESH",
+      "location": [
+        0.044441,
+        -0.590953,
+        -0.0429
+      ],
+      "rotation_euler": [
+        1.150636,
+        0.51346,
+        -0.769306
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "upper_arm.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_UPPER_ARM_L",
+      "type": "MESH",
+      "location": [
+        0.041258,
+        -0.320681,
+        -0.032782
+      ],
+      "rotation_euler": [
+        1.150636,
+        0.51346,
+        -0.769306
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "upper_arm.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 22,
+        "edges": 50,
+        "polygons": 30,
+        "triangles": 40,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_ELBOW_L",
+      "type": "MESH",
+      "location": [
+        0.075114,
+        -0.575519,
+        -0.009775
+      ],
+      "rotation_euler": [
+        1.590445,
+        0.127783,
+        -0.125304
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "forearm.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_FOREARM_L",
+      "type": "MESH",
+      "location": [
+        0.07805,
+        -0.293586,
+        -0.010157
+      ],
+      "rotation_euler": [
+        1.590445,
+        0.127783,
+        -0.125304
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "forearm.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 22,
+        "edges": 50,
+        "polygons": 30,
+        "triangles": 40,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_HAND_L",
+      "type": "MESH",
+      "location": [
+        0.084298,
+        -0.068469,
+        -0.007168
+      ],
+      "rotation_euler": [
+        1.707934,
+        -0.031579,
+        0.02752
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "hand.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_WHITE_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_HIP_L",
+      "type": "MESH",
+      "location": [
+        0.024818,
+        -0.855356,
+        -0.000295
+      ],
+      "rotation_euler": [
+        1.570655,
+        0.011903,
+        -0.011905
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "thigh.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_THIGH_L",
+      "type": "MESH",
+      "location": [
+        0.0,
+        -0.42003,
+        0.0
+      ],
+      "rotation_euler": [
+        1.570655,
+        0.011903,
+        -0.011905
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "thigh.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 22,
+        "edges": 50,
+        "polygons": 30,
+        "triangles": 40,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_KNEE_L",
+      "type": "MESH",
+      "location": [
+        0.0,
+        -0.860291,
+        0.0
+      ],
+      "rotation_euler": [
+        1.59391,
+        0.011897,
+        -0.011625
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "shin.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_SHIN_L",
+      "type": "MESH",
+      "location": [
+        0.0,
+        -0.430145,
+        0.0
+      ],
+      "rotation_euler": [
+        1.59391,
+        0.011897,
+        -0.011625
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "shin.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 22,
+        "edges": 50,
+        "polygons": 30,
+        "triangles": 40,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_FOOT_L",
+      "type": "MESH",
+      "location": [
+        -0.02,
+        -0.389915,
+        0.127758
+      ],
+      "rotation_euler": [
+        2.785957,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "foot.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_WHITE_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_SHOULDER_R",
+      "type": "MESH",
+      "location": [
+        -0.045997,
+        -0.590131,
+        -0.044065
+      ],
+      "rotation_euler": [
+        1.150636,
+        -0.51346,
+        0.769306
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "upper_arm.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_UPPER_ARM_R",
+      "type": "MESH",
+      "location": [
+        -0.042675,
+        -0.319192,
+        -0.033826
+      ],
+      "rotation_euler": [
+        1.150636,
+        -0.51346,
+        0.769306
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "upper_arm.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 22,
+        "edges": 50,
+        "polygons": 30,
+        "triangles": 40,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_ELBOW_R",
+      "type": "MESH",
+      "location": [
+        -0.075403,
+        -0.572865,
+        -0.009717
+      ],
+      "rotation_euler": [
+        1.590445,
+        -0.127783,
+        0.125304
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "forearm.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_FOREARM_R",
+      "type": "MESH",
+      "location": [
+        -0.077629,
+        -0.29075,
+        -0.010003
+      ],
+      "rotation_euler": [
+        1.590445,
+        -0.127783,
+        0.125304
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "forearm.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 22,
+        "edges": 50,
+        "polygons": 30,
+        "triangles": 40,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_HAND_R",
+      "type": "MESH",
+      "location": [
+        -0.081933,
+        -0.065733,
+        -0.006854
+      ],
+      "rotation_euler": [
+        1.707934,
+        0.031579,
+        -0.02752
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "hand.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_WHITE_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_HIP_R",
+      "type": "MESH",
+      "location": [
+        -0.024818,
+        -0.855356,
+        -0.000295
+      ],
+      "rotation_euler": [
+        1.570655,
+        -0.011903,
+        0.011905
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "thigh.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_THIGH_R",
+      "type": "MESH",
+      "location": [
+        -0.0,
+        -0.42003,
+        0.0
+      ],
+      "rotation_euler": [
+        1.570655,
+        -0.011903,
+        0.011905
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "thigh.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 22,
+        "edges": 50,
+        "polygons": 30,
+        "triangles": 40,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_KNEE_R",
+      "type": "MESH",
+      "location": [
+        -0.0,
+        -0.860291,
+        0.0
+      ],
+      "rotation_euler": [
+        1.59391,
+        -0.011897,
+        0.011625
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "shin.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_SHIN_R",
+      "type": "MESH",
+      "location": [
+        -0.0,
+        -0.430145,
+        0.0
+      ],
+      "rotation_euler": [
+        1.59391,
+        -0.011897,
+        0.011625
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "shin.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 22,
+        "edges": 50,
+        "polygons": 30,
+        "triangles": 40,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_FOOT_R",
+      "type": "MESH",
+      "location": [
+        0.02,
+        -0.389915,
+        0.127758
+      ],
+      "rotation_euler": [
+        2.785957,
+        0.0,
+        -0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "foot.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_WHITE_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_TAIL_01",
+      "type": "MESH",
+      "location": [
+        -0.05596,
+        -0.313022,
+        -0.00557
+      ],
+      "rotation_euler": [
+        0.26178,
+        -0.079652,
+        0.587848
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "tail.01",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 22,
+        "edges": 50,
+        "polygons": 30,
+        "triangles": 40,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_TAIL_02",
+      "type": "MESH",
+      "location": [
+        -0.043409,
+        -0.365815,
+        -0.022659
+      ],
+      "rotation_euler": [
+        0.726539,
+        -0.306503,
+        0.771904
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "tail.02",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 22,
+        "edges": 50,
+        "polygons": 30,
+        "triangles": 40,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_TAIL_03",
+      "type": "MESH",
+      "location": [
+        -0.044949,
+        -0.363218,
+        -0.036038
+      ],
+      "rotation_euler": [
+        1.280349,
+        -0.479222,
+        0.633898
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "tail.03",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 22,
+        "edges": 50,
+        "polygons": 30,
+        "triangles": 40,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_TAIL_04",
+      "type": "MESH",
+      "location": [
+        0.0,
+        -0.31245,
+        0.0
+      ],
+      "rotation_euler": [
+        1.995491,
+        -0.37413,
+        0.243072
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "tail.04",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 22,
+        "edges": 50,
+        "polygons": 30,
+        "triangles": 40,
+        "ngons": 0,
+        "materials": [
+          "FOX_WHITE_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_TAIL_TIP",
+      "type": "MESH",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler": [
+        1.995491,
+        -0.37413,
+        0.243072
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "tail.04",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_WHITE_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_EAR_CAP_L",
+      "type": "MESH",
+      "location": [
+        -0.127878,
+        0.020184,
+        -0.05128
+      ],
+      "rotation_euler": [
+        -1.415862,
+        -0.354108,
+        -0.364451
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "ear.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_EAR_CAP_R",
+      "type": "MESH",
+      "location": [
+        -0.070601,
+        0.010258,
+        0.028821
+      ],
+      "rotation_euler": [
+        -1.384769,
+        0.339291,
+        0.455896
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "ear.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_ANKLE_L",
+      "type": "MESH",
+      "location": [
+        -0.001519,
+        -0.112613,
+        -0.017606
+      ],
+      "rotation_euler": [
+        1.59391,
+        0.011897,
+        -0.011625
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "shin.L",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_ANKLE_R",
+      "type": "MESH",
+      "location": [
+        0.001519,
+        -0.112613,
+        -0.017606
+      ],
+      "rotation_euler": [
+        1.59391,
+        -0.011897,
+        0.011625
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "BONE",
+      "parent_bone": "shin.R",
+      "modifiers": [],
+      "mesh": {
+        "vertices": 12,
+        "edges": 30,
+        "polygons": 20,
+        "triangles": 20,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_V5_BODY",
+      "type": "MESH",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "OBJECT",
+      "parent_bone": null,
+      "modifiers": [
+        "ARMATURE"
+      ],
+      "mesh": {
+        "vertices": 178,
+        "edges": 368,
+        "polygons": 192,
+        "triangles": 352,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    },
+    {
+      "name": "MDL_V5_TAIL_ROOT",
+      "type": "MESH",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible": true,
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "FOX_RIG_GUIDE",
+      "parent_type": "OBJECT",
+      "parent_bone": null,
+      "modifiers": [
+        "ARMATURE"
+      ],
+      "mesh": {
+        "vertices": 60,
+        "edges": 108,
+        "polygons": 48,
+        "triangles": 96,
+        "ngons": 0,
+        "materials": [
+          "FOX_TEAL_V2"
+        ]
+      }
+    }
+  ],
+  "rig": {
+    "armatures": [
+      {
+        "name": "FOX_RIG_GUIDE",
+        "bones": 24,
+        "bone_names": [
+          "root",
+          "pelvis",
+          "spine",
+          "chest",
+          "neck",
+          "head",
+          "ear.L",
+          "ear.R",
+          "upper_arm.L",
+          "forearm.L",
+          "hand.L",
+          "upper_arm.R",
+          "forearm.R",
+          "hand.R",
+          "thigh.L",
+          "shin.L",
+          "foot.L",
+          "thigh.R",
+          "shin.R",
+          "foot.R",
+          "tail.01",
+          "tail.02",
+          "tail.03",
+          "tail.04"
+        ],
+        "visible": true,
+        "hide_viewport": false,
+        "hide_render": true,
+        "active_action": "idle",
+        "related_target_links": 49
+      }
+    ],
+    "actions": [
+      {
+        "name": "idle",
+        "frame_range": [
+          1.0,
+          40.0
+        ],
+        "users": 2
+      },
+      {
+        "name": "sitting",
+        "frame_range": [
+          1.0,
+          24.0
+        ],
+        "users": 1
+      },
+      {
+        "name": "walking",
+        "frame_range": [
+          1.0,
+          32.0
+        ],
+        "users": 1
+      },
+      {
+        "name": "wave",
+        "frame_range": [
+          1.0,
+          48.0
+        ],
+        "users": 1
+      }
+    ],
+    "target_object_count": 47
+  },
+  "collections": [
+    {
+      "name": "__BRIDGE_REVIEW_TEMP__",
+      "objects": 48,
+      "all_objects": 48,
+      "hide_viewport": false,
+      "hide_render": false
+    },
+    {
+      "name": "BLOCKOUT",
+      "objects": 37,
+      "all_objects": 37,
+      "hide_viewport": true,
+      "hide_render": true
+    },
+    {
+      "name": "MODEL_PROXY",
+      "objects": 47,
+      "all_objects": 47,
+      "hide_viewport": false,
+      "hide_render": false
+    },
+    {
+      "name": "REFERENCES",
+      "objects": 4,
+      "all_objects": 4,
+      "hide_viewport": true,
+      "hide_render": true
+    },
+    {
+      "name": "RIG_GUIDE",
+      "objects": 1,
+      "all_objects": 1,
+      "hide_viewport": false,
+      "hide_render": true
+    },
+    {
+      "name": "V3_RIGID_BODY_ARCHIVE",
+      "objects": 3,
+      "all_objects": 3,
+      "hide_viewport": true,
+      "hide_render": true
+    }
+  ],
+  "visibility": {
+    "selected_before": [],
+    "active_before": "MDL_ANKLE_R",
+    "visible_reference_images": []
+  },
+  "warnings": [],
+  "renders": [
+    {
+      "view": "front",
+      "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\review-bundles-v5\\fox-v5-continuity_front.png",
+      "width": 768,
+      "height": 768,
+      "bytes": 636275,
+      "sha256": "341460201247dd758780136ee6e0753b7009091140a541ff7133fc4e60a2d714",
+      "camera_location": [
+        0.227943,
+        -13.50355,
+        3.066751
+      ],
+      "camera_rotation_euler": [
+        1.570796,
+        -0.0,
+        0.0
+      ],
+      "projection": "orthographic",
+      "ortho_scale": 7.041211
+    },
+    {
+      "view": "right",
+      "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\review-bundles-v5\\fox-v5-continuity_right.png",
+      "width": 768,
+      "height": 768,
+      "bytes": 605033,
+      "sha256": "087ca17cf94026637147838a7840a0f9f862cc8afd6191563c0dc3153a6d2bc1",
+      "camera_location": [
+        14.059098,
+        0.327606,
+        3.066751
+      ],
+      "camera_rotation_euler": [
+        1.570796,
+        -0.0,
+        1.570796
+      ],
+      "projection": "orthographic",
+      "ortho_scale": 7.041212
+    },
+    {
+      "view": "back",
+      "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\review-bundles-v5\\fox-v5-continuity_back.png",
+      "width": 768,
+      "height": 768,
+      "bytes": 617259,
+      "sha256": "af9cd3ee5e4e2c913860105217c007df30956d6998b1abe92408c2b6d5c4834d",
+      "camera_location": [
+        0.227943,
+        14.158762,
+        3.066751
+      ],
+      "camera_rotation_euler": [
+        -1.570796,
+        3.141593,
+        -0.0
+      ],
+      "projection": "orthographic",
+      "ortho_scale": 7.041211
+    },
+    {
+      "view": "left",
+      "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\review-bundles-v5\\fox-v5-continuity_left.png",
+      "width": 768,
+      "height": 768,
+      "bytes": 597934,
+      "sha256": "374081ee4394aa821ee4322aa038d87a6b2894364a9520733fc1bbcc79f215e1",
+      "camera_location": [
+        -13.603213,
+        0.327606,
+        3.066751
+      ],
+      "camera_rotation_euler": [
+        1.570796,
+        -0.0,
+        -1.570796
+      ],
+      "projection": "orthographic",
+      "ortho_scale": 7.041212
+    },
+    {
+      "view": "three-quarter",
+      "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\review-bundles-v5\\fox-v5-continuity_three-quarter.png",
+      "width": 768,
+      "height": 768,
+      "bytes": 639220,
+      "sha256": "fab88dd0bea5c2da6e01d5199b77b73f315765c58adad0526ea5fd101492767e",
+      "camera_location": [
+        9.766897,
+        -9.211349,
+        6.119216
+      ],
+      "camera_rotation_euler": [
+        1.348269,
+        -0.0,
+        0.785398
+      ],
+      "projection": "orthographic",
+      "ortho_scale": 7.487896
+    },
+    {
+      "view": "rear-three-quarter",
+      "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\review-bundles-v5\\fox-v5-continuity_rear-three-quarter.png",
+      "width": 768,
+      "height": 768,
+      "bytes": 607174,
+      "sha256": "894f17a14cd983c65f7ba334c1136c2148da4d5d5cebc97c763dff9b5757372a",
+      "camera_location": [
+        9.766897,
+        9.866561,
+        6.119216
+      ],
+      "camera_rotation_euler": [
+        1.348269,
+        0.0,
+        2.356194
+      ],
+      "projection": "orthographic",
+      "ortho_scale": 7.468658
+    },
+    {
+      "view": "top",
+      "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\review-bundles-v5\\fox-v5-continuity_top.png",
+      "width": 768,
+      "height": 768,
+      "bytes": 628466,
+      "sha256": "6c84178e7fd5b91205b7f7abc08c606fea911b674a9e3a3668c3c2365b7dae07",
+      "camera_location": [
+        0.227943,
+        0.327606,
+        16.897907
+      ],
+      "camera_rotation_euler": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "projection": "orthographic",
+      "ortho_scale": 3.454327
+    }
+  ],
+  "contact_sheet": {
+    "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\review-bundles-v5\\fox-v5-continuity_contact.png",
+    "width": 992,
+    "height": 992,
+    "bytes": 443807,
+    "sha256": "4fea9b84ef002383b9c6454b7c3f965dfd549a032c5b938b09ce303d51d221fe"
+  },
+  "restoration": {
+    "attempted": true,
+    "completed": true
+  },
+  "manifest": {
+    "path": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\review-bundles-v5\\fox-v5-continuity_review.json",
+    "bytes": 42338,
+    "sha256": "dafd3a539c37857bcc9d4167547bfead7f3f85ec87d09fc3f5c4c3b0eaa0cc82"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "stage": "proxy_v5_browser_smoke_verified",
+  "baseUrl": "http://127.0.0.1:4173",
+  "page": {
+    "status": 200,
+    "contentType": "text/html",
+    "bytes": 469
+  },
+  "model": {
+    "url": "/models/chatgpt-fox-proxy-v5.glb",
+    "status": 200,
+    "contentType": "model/gltf-binary",
+    "servedBytes": 189924,
+    "file": {
+      "path": "client/public/models/chatgpt-fox-proxy-v5.glb",
+      "bytes": 189924,
+      "sha256": "2e381baf55bff5afd61f3a612ea711d9dc027fac19cc539500f286fa2e6486b3"
+    }
+  },
+  "screenshot": {
+    "path": "assets/concepts/chatgpt-fox/blender/game_smoke_proxy_v5.png",
+    "bytes": 51583,
+    "sha256": "103311be345db347e9ee0cee0d4fdd95397de251ade2177168bd6dde156890b4"
+  },
+  "pixelEvidence": {
+    "width": 1280,
+    "height": 720,
+    "analysisCrop": [
+      384,
+      108,
+      896,
+      662
+    ],
+    "tealPixels": 23491,
+    "cyanPixels": 1474,
+    "placeholderPinkPixels": 0
+  },
+  "chrome": {
+    "command": [
+      "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "--headless=new",
+      "--hide-scrollbars",
+      "--use-angle=swiftshader",
+      "--enable-unsafe-swiftshader",
+      "--ignore-gpu-blocklist",
+      "--run-all-compositor-stages-before-draw",
+      "--window-size=1280,720",
+      "--virtual-time-budget=9000",
+      "--user-data-dir=C:\\Users\\mauro\\AppData\\Local\\Temp\\cbanimal-v5-chrome-znezyjd4",
+      "--screenshot=<path>",
+      "http://127.0.0.1:4173/"
+    ],
+    "exitCode": 0,
+    "stderrTail": "51583 bytes written to file C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\game_smoke_proxy_v5.png\n"
+  }
+}

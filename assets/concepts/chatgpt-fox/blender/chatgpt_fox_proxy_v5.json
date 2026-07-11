@@ -1,0 +1,307 @@
+{
+  "stage": "hybrid_proxy_v5_integrated_and_verified",
+  "character": "chatgpt-fox",
+  "visualBasis": {
+    "description": "User-provided front, profile, and back screenshots reviewed in the active ChatGPT session.",
+    "preserve": [
+      "face and expression",
+      "teal/cyan/white palette",
+      "ears, hands, and paws",
+      "approved segmented tail curve and white tip"
+    ],
+    "refine": [
+      "torso-to-pelvis continuity",
+      "neck embedding",
+      "tail-root transition",
+      "shoulder, hip, knee, and ankle overlap"
+    ]
+  },
+  "source": {
+    "canonicalBlend": {
+      "path": "assets/concepts/chatgpt-fox/blender/chatgpt_fox_proxy_v5.blend",
+      "bytes": 182131,
+      "sha256": "d7f60617a84e5bc8a5a1d1be122a4f92856c9f502a6ca3c41478d322e7a202c2"
+    },
+    "retainedSources": [
+      {
+        "path": "assets/concepts/chatgpt-fox/character-brief.json",
+        "bytes": 1157,
+        "sha256": "a35864f4434b9a3b1c67e9a5b78b3f1ef1e651254c0a9d5a04cf11bcaef65c2b"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/source/chatgpt_fox_front.jpg",
+        "bytes": 3707,
+        "sha256": "14729c14a70fca1c3e67b6c374b67f1a42fc73984f78f379bd1f0479bddb990b"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/source/chatgpt_fox_side.jpg",
+        "bytes": 3260,
+        "sha256": "39d55d4b7559820e79fe0addef9a0483a5e39e16906d4d629561bd96f7abaefa"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/source/chatgpt_fox_back.jpg",
+        "bytes": 3335,
+        "sha256": "b35e82e1aa7a2f353fd6210fb47b70f65f75a3c03166ff847f94e756ecf4b34b"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/source/chatgpt_fox_three_quarter.jpg",
+        "bytes": 3911,
+        "sha256": "4ea41af97005643b20ded63a1a26089ea77c8958754bfed38476b8b01a54fa65"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/source/generation-manifest.json",
+        "bytes": 2591,
+        "sha256": "8b9554f4e0b93b541cc0f035fc74567b0753c7ad3aba7d8ecb57f60821051c51"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/prepared/chatgpt_fox_front.jpg",
+        "bytes": 45603,
+        "sha256": "f2c645797f8a8e7c7573456b42d981b6d08d917d54c58911a84431151ffdd710"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/prepared/chatgpt_fox_side.jpg",
+        "bytes": 35587,
+        "sha256": "8d091d5d90aac0e69812420e884941924064700f77976373bf43fdd9064c45e0"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/prepared/chatgpt_fox_back.jpg",
+        "bytes": 38597,
+        "sha256": "84b0f217fc654a014ae9b4901c9eddf5ce108ebf8e3571394f15dd4d65099a0d"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/prepared/chatgpt_fox_three-quarter.jpg",
+        "bytes": 45658,
+        "sha256": "ffc81d046bdfb9e27d25fc686843876ed00e1c525f0b835780eceaac342c55e2"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/prepared/prepared-manifest.json",
+        "bytes": 5909,
+        "sha256": "a536f7b9e90b904c9d66a8c4a67d6f620b18ccf9f04f492ff9927f28a1ea4f10"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/chatgpt_fox_references.blend",
+        "bytes": 151253,
+        "sha256": "7e26432b83c9c36fc6271c270bdd27086a160d2bec852c6ba1d662d1a6e25363"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/chatgpt_fox_references.loop.json",
+        "bytes": 3947,
+        "sha256": "1d19e9e1427c12b43a6f7fbc236cdd82a63414b5c0df50c36e45a66345019f70"
+      }
+    ],
+    "cleanupPolicy": "Only canonical v5 runtime/checkpoint assets and approved source/reference inputs are retained."
+  },
+  "construction": {
+    "mode": "hybrid articulated proxy",
+    "rig": "FOX_RIG_GUIDE",
+    "bones": 24,
+    "rigidMeshes": 45,
+    "deformingMeshes": {
+      "MDL_V5_BODY": [
+        "pelvis",
+        "spine",
+        "chest",
+        "neck"
+      ],
+      "MDL_V5_TAIL_ROOT": [
+        "pelvis",
+        "tail.01"
+      ]
+    },
+    "legacyArchivePurged": true,
+    "geometry": {
+      "objects": 47,
+      "mesh_objects": 47,
+      "vertices": 994,
+      "edges": 2306,
+      "polygons": 1404,
+      "triangles": 1780
+    },
+    "materials": [
+      "FOX_CYAN_V2",
+      "FOX_DARK_TEAL_V2",
+      "FOX_TEAL_V2",
+      "FOX_WHITE_V2"
+    ],
+    "warnings": []
+  },
+  "animations": {
+    "names": [
+      "idle",
+      "walking",
+      "sitting",
+      "wave"
+    ],
+    "validation": {
+      "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-animation-validation.json",
+      "bytes": 38558,
+      "sha256": "51d5337c0a12f7aaf98717cc385abd8ed92b762acd9f37cc6a22ef973f444040"
+    },
+    "minimumValidatedZ": -0.0215,
+    "deformingObjects": {
+      "MDL_V5_BODY": {
+        "vertices": 178,
+        "groups": [
+          "chest",
+          "neck",
+          "pelvis",
+          "spine"
+        ],
+        "modifier": "FOX_V5_ARMATURE"
+      },
+      "MDL_V5_TAIL_ROOT": {
+        "vertices": 60,
+        "groups": [
+          "pelvis",
+          "tail.01"
+        ],
+        "modifier": "FOX_V5_ARMATURE"
+      }
+    }
+  },
+  "export": {
+    "file": {
+      "path": "client/public/models/chatgpt-fox-proxy-v5.glb",
+      "bytes": 189924,
+      "sha256": "2e381baf55bff5afd61f3a612ea711d9dc027fac19cc539500f286fa2e6486b3"
+    },
+    "structure": {
+      "version": 2,
+      "bytes": 189924,
+      "nodes": 72,
+      "meshes": 47,
+      "materials": 4,
+      "skins": 1,
+      "animations": [
+        "idle",
+        "sitting",
+        "walking",
+        "wave"
+      ],
+      "scenes": 1
+    }
+  },
+  "integration": {
+    "config": {
+      "path": "client/src/game/config/localPlayerConfig.ts",
+      "bytes": 647,
+      "sha256": "9f604627b5a406003e674d5494998586b26ce6139a34bd39b4f9e36cb00753bb"
+    },
+    "defaultUrl": "/models/chatgpt-fox-proxy-v5.glb",
+    "scale": 0.32,
+    "environmentOverridePreserved": true,
+    "build": {
+      "command": "npm run build",
+      "status": "passed",
+      "warning": "Existing non-blocking Vite JavaScript chunk-size warning remains."
+    },
+    "browserSmoke": {
+      "record": {
+        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-game-smoke.json",
+        "bytes": 1669,
+        "sha256": "0de62df71788ce5b71e2d5e2cd9d396e9e692b9805a7cc9a5d77c956d73ac86d"
+      },
+      "screenshot": {
+        "path": "assets/concepts/chatgpt-fox/blender/game_smoke_proxy_v5.png",
+        "bytes": 51583,
+        "sha256": "103311be345db347e9ee0cee0d4fdd95397de251ade2177168bd6dde156890b4"
+      },
+      "pageStatus": 200,
+      "modelStatus": 200,
+      "contentType": "model/gltf-binary",
+      "servedBytes": 189924,
+      "pixelEvidence": {
+        "width": 1280,
+        "height": 720,
+        "analysisCrop": [
+          384,
+          108,
+          896,
+          662
+        ],
+        "tealPixels": 23491,
+        "cyanPixels": 1474,
+        "placeholderPinkPixels": 0
+      }
+    }
+  },
+  "review": {
+    "neutralSourceManifest": {
+      "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/neutral-review.json",
+      "bytes": 42587,
+      "sha256": "b99b0b25f35db9b4e4be7165675df3927e82a60ccf7604cc46b5d94532b0d3ab"
+    },
+    "sheets": [
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/neutral-multiview.jpg",
+        "bytes": 44155,
+        "sha256": "532b767a7a7eca3fac3e095e9034f1b09746c52f3e049fd3af87c4412ec9f190"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/walk-frame-1-contact.jpg",
+        "bytes": 20734,
+        "sha256": "48c44a768804d18271f4a09da41582307069336f83657ce5797e63ff481ad9d1"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/walk-frame-17-contact.jpg",
+        "bytes": 20284,
+        "sha256": "2629b7e4cccbde127709c2d6784099c56bb0e08a289285be333b719ecafc5b46"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/sit-frame-12-contact.jpg",
+        "bytes": 26018,
+        "sha256": "5908597467d6e7759897dfd42dcd547563bd8b1ec73bc15c7b2488024de24deb"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/wave-frame-20-contact.jpg",
+        "bytes": 20259,
+        "sha256": "91c8333c94713b947e8c44f13597906be40143e3d913426a48ef49edd2ef43cf"
+      }
+    ]
+  },
+  "artifacts": {
+    "blend": {
+      "path": "assets/concepts/chatgpt-fox/blender/chatgpt_fox_proxy_v5.blend",
+      "bytes": 182131,
+      "sha256": "d7f60617a84e5bc8a5a1d1be122a4f92856c9f502a6ca3c41478d322e7a202c2"
+    },
+    "scripts": [
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/scripts/validate_proxy_v5_animations.py",
+        "bytes": 11135,
+        "sha256": "a99d720adf16884dd2003a4ce74af7086b3dd07efd7bcda80e138ac2f23af873"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/scripts/export_proxy_v5_glb.py",
+        "bytes": 5914,
+        "sha256": "f028500690036165f4e474727a55a1519b78da7afbd803f3c396ec2abc64384f"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/scripts/record_proxy_v5_game_smoke.py",
+        "bytes": 6466,
+        "sha256": "a0c00ba46e5171560254a8544636e8fb73812a700250e71c2e4426d0920955ac"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/scripts/finalize_proxy_v5_checkpoint.py",
+        "bytes": 11104,
+        "sha256": "dc96fe8c1852e9a5ccd61d4b5917f4e8fb1d6d52a27c29ebbe4fe6fad21ff5bf"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/scripts/verify_proxy_v5_checkpoint.py",
+        "bytes": 7434,
+        "sha256": "419abe2cb94389d2005fcbb9ca32c534bae2380180e2f278ec40d50fafccb5b7"
+      }
+    ]
+  },
+  "limitations": [
+    "This is a polished hybrid gameplay proxy, not the final unified 8k-12k production mesh.",
+    "Face, limbs, paws, ears, and most tail segments remain separate rigid low-poly meshes.",
+    "The four animation clips are validated gameplay clips rather than final polished animation.",
+    "UVs, a 1024 texture set, production retopology, and close-up deformation polish remain future milestones."
+  ],
+  "nextMilestone": [
+    "Review v5 at gameplay camera distance and keep it as the creature production-direction baseline.",
+    "Build a fully unified production body and tail only when close-up presentation becomes necessary.",
+    "Create UVs, a 1024 texture, final weights, and refined animation controls."
+  ]
+}
