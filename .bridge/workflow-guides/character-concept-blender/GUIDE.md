@@ -233,3 +233,87 @@ A concept loop is complete only when all are true:
 - viewport screenshot exists and was reviewed
 
 Otherwise report the current state and continue from the next unfinished phase.
+
+
+## Extended pipeline — Blender to browser game
+
+The original concept loop ends at `ready_for_blockout`. For CBAnimal, continue with the following resumable states:
+
+```text
+ready_for_blockout
+  -> blockout_created
+  -> blockout_reviewed
+  -> model_proxy_created
+  -> rig_guide_created
+  -> validation_actions_created
+  -> rigged_proxy_exported
+  -> glb_structurally_verified
+  -> game_config_integrated
+  -> client_build_passed
+  -> browser_model_smoke_passed
+  -> ready_for_production_topology
+```
+
+Load the dedicated phase document that matches the current state:
+
+- `blockout-model-proxy`
+- `rig-animation-export`
+- `game-integration-verify`
+
+### Artifact classes
+
+Use these names precisely:
+
+- **Reference scene:** image planes or empties only.
+- **Blockout:** cheap geometry for silhouette and proportion decisions.
+- **Model proxy:** duplicated and reviewable geometry prepared for pipeline testing.
+- **Rigged proxy:** articulated validation asset, possibly made from rigid pieces.
+- **Production model:** unified or intentionally segmented topology with real deformation weights, UVs, textures, tested rigging, and polished animations.
+
+Never call a blockout or rigid proxy a finished model.
+
+### Mandatory Blender review rule
+
+A scene containing meshes does not prove the user can see the model. Before reporting success:
+
+1. Inspect collection and object visibility.
+2. Hide reference images that cover geometry.
+3. Deselect objects and disable object-origin overlays.
+4. Keep an armature evaluable when child meshes depend on it.
+5. Produce real front, side, and three-quarter renders.
+6. Confirm the renders differ and record their hashes or dimensions.
+
+### Mandatory export rule
+
+A Blender export operator returning `FINISHED` does not prove a usable GLB. Parse the GLB and verify its header, declared length, mesh count, skin count, and exact animation names.
+
+### Mandatory runtime rule
+
+A successful HTTP request does not prove Three.js rendered the exported character. Build the client, serve it, load it in a browser, and distinguish the real model from the placeholder through runtime diagnostics or deterministic screenshot evidence.
+
+### Resume rule
+
+At the end of every stage, update both:
+
+- a machine-readable JSON checkpoint inside the character's Blender asset directory;
+- `.bridge/PROJECT_STATE.md` with the verified stage, limitations, and next milestone.
+
+Preserve the reference collection, original blockout, scripts, exported asset, and verification evidence. Stop temporary servers and do not create a Git commit unless requested.
+
+## Full completion rule
+
+The end-to-end proxy pipeline is complete only when:
+
+- the original four references remain preserved;
+- a visible blockout or model proxy exists;
+- clean independent Blender renders exist;
+- an armature and expected actions exist;
+- actual frame evaluation proves movement;
+- the exported GLB parses as glTF 2.0 and contains the expected skin and clips;
+- the client build passes;
+- the GLB is served successfully;
+- a browser renders the exported character instead of the fallback placeholder;
+- temporary processes are stopped;
+- project state and Git status are reviewed.
+
+Production art remains a separate milestone requiring high-resolution references, final topology, deformation weights, UVs, textures, and animation polish.

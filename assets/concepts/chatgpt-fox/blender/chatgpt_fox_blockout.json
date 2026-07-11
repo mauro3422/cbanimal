@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "character": "chatgpt-fox",
+  "stage": "first_blockout_awaiting_approval",
+  "updatedAt": "2026-07-11",
+  "blendFile": {
+    "path": "assets/concepts/chatgpt-fox/blender/chatgpt_fox_references.blend",
+    "bytes": 120314,
+    "sha256": "6cfbd26fabdcdd2121e148d7162b04a44153a551b89fa046852171f45b4d2e4b"
+  },
+  "collections": {
+    "references": "REFERENCES",
+    "blockout": "BLOCKOUT"
+  },
+  "geometry": {
+    "objects": 37,
+    "meshObjects": 37,
+    "vertices": 616,
+    "triangles": 1084,
+    "materials": 4,
+    "pose": "relaxed humanoid A-pose"
+  },
+  "includedForms": [
+    "head",
+    "torso",
+    "pelvis",
+    "neck",
+    "muzzle",
+    "chest patch",
+    "ears and ear tips",
+    "eyes",
+    "mirrored arms and hands",
+    "mirrored legs and feet",
+    "single segmented tail and tip"
+  ],
+  "screenshots": [
+    {
+      "role": "front",
+      "path": "assets/concepts/chatgpt-fox/blender/blockout_front.png",
+      "width": 900,
+      "height": 482,
+      "bytes": 269151,
+      "sha256": "34887eee99c780cae8c62db86921bd5dd4d30904035ca702a16c2f48cf52063a"
+    },
+    {
+      "role": "side",
+      "path": "assets/concepts/chatgpt-fox/blender/blockout_side.png",
+      "width": 900,
+      "height": 482,
+      "bytes": 257312,
+      "sha256": "e0117b3ac367a0377b59bc4cad56f7692650a10f58cce93903bbdf4f93a724b6"
+    },
+    {
+      "role": "three-quarter",
+      "path": "assets/concepts/chatgpt-fox/blender/blockout_three_quarter.png",
+      "width": 900,
+      "height": 482,
+      "bytes": 296034,
+      "sha256": "226985947eb4547241a7fec3f27d56dbd95ac40f6787416b7a244a6600ff64aa"
+    }
+  ],
+  "review": {
+    "performed": true,
+    "result": "Readable full-body silhouette in front, side, and three-quarter views; no clipped extremities; character identity elements are recognizable.",
+    "approvalRequired": true
+  },
+  "limitations": [
+    "This is silhouette-first primitive geometry, not cleaned production topology.",
+    "The source concept images remain lightweight proxies suitable only for blockout.",
+    "Do not begin detailed retopology, UVs, texturing, rigging, or export before user approval and high-resolution reference replacement."
+  ],
+  "scripts": [
+    "assets/concepts/chatgpt-fox/blender/scripts/create_blockout.py",
+    "assets/concepts/chatgpt-fox/blender/scripts/set_blockout_review_view.py",
+    "assets/concepts/chatgpt-fox/blender/scripts/finalize_blockout_checkpoint.py"
+  ]
+}

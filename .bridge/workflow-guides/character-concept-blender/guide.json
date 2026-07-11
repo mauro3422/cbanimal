@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "name": "character-concept-blender",
-  "title": "CBAnimal Character Concept to Blender",
-  "description": "Project-specific character creation pipeline for CBAnimal: generate consistent anthropomorphic creature views, preserve species and elemental identity, save and normalize references, and prepare low-poly Blender scenes compatible with the shared humanoid rig and Three.js GLB workflow.",
+  "title": "CBAnimal Character Concept to Game",
+  "description": "Project-specific end-to-end character pipeline for CBAnimal: lock a creature brief, generate and normalize consistent turnaround views, build and review a low-poly Blender blockout, promote it to an articulated proxy, validate named animations, export a versioned GLB, integrate it into Three.js, and prove the real model renders in the browser.",
   "activation": {
     "keywords": [
       "cbanimal character",
@@ -14,27 +14,41 @@
       "turnaround",
       "low poly",
       "blender",
+      "model proxy",
+      "rig",
+      "rig compartido",
+      "animaciones",
       "glb",
-      "rig compartido"
+      "gltf",
+      "three.js",
+      "integrar personaje",
+      "pipeline de personaje"
     ],
     "phrases": [
       "crear un personaje para cbanimal",
       "hacer las vistas del personaje furry",
       "pasar la criatura a blender",
       "preparar el personaje para el juego",
-      "crear el modelo low poly del personaje"
+      "crear el modelo low poly del personaje",
+      "riggear y exportar el personaje",
+      "integrar el glb en el juego",
+      "continuar la pipeline del personaje"
     ],
     "negativeKeywords": [
       "escenario",
       "estadio",
       "arquitectura",
       "vehiculo",
-      "logo"
+      "logo",
+      "producto",
+      "render arquitectonico"
     ],
     "examples": [
       "Creemos el primer personaje furry de CBAnimal y pasémoslo a Blender.",
       "Generá frente, perfil, espalda y tres cuartos de esta criatura elemental.",
-      "Corregí la cola y las marcas para que todas las vistas coincidan antes de modelar."
+      "Corregí la cola y las marcas para que todas las vistas coincidan antes de modelar.",
+      "Continuá desde el blockout, hacé un rig de prueba y exportalo al juego.",
+      "Integrá el GLB del personaje y verificá que Three.js no muestre el placeholder."
     ]
   },
   "entrypoint": "GUIDE.md",
@@ -45,15 +59,32 @@
     "repair-view": "prompts/repair-view.md",
     "save": "GUIDE.md",
     "prepare": "GUIDE.md",
-    "blender": "GUIDE.md",
+    "blender-references": "GUIDE.md",
+    "blockout-model-proxy": "phases/blockout-model-proxy.md",
+    "rig-animation-export": "phases/rig-animation-export.md",
+    "game-integration-verify": "phases/game-integration-verify.md",
     "resume": "GUIDE.md"
   },
   "recommendedTools": [
+    "project_context_load",
+    "workflow_guide_load",
     "image_asset_save",
     "image_character_views_prepare",
     "blender_setup_character_references",
+    "blender_character_loop_status",
+    "blender_status",
+    "blender_scene_info",
+    "blender_execute_code",
     "blender_viewport_screenshot",
-    "blender_character_loop_status"
+    "python_validate",
+    "read_text_file",
+    "write_text_file",
+    "apply_patch",
+    "run_command",
+    "terminal_start",
+    "terminal_read",
+    "terminal_stop",
+    "git_status"
   ],
-  "scopeNotes": "Project guide for C:\\dev\\cbanimal. It overrides the global character-concept-blender guide whenever this project root is supplied."
+  "scopeNotes": "Project guide for C:\\dev\\cbanimal. It overrides any global character-concept-blender guide when this project root is supplied. It distinguishes reference setup, blockout, articulated proxy, and production model so intermediate validation assets are never mislabeled as final art."
 }

@@ -6,17 +6,17 @@ export interface LocalPlayerConfig {
   model: CharacterModelConfig | null;
 }
 
+const DEFAULT_PLAYER_MODEL_URL = "/models/chatgpt-fox-proxy-v1.glb";
 const configuredModelUrl = import.meta.env.VITE_PLAYER_MODEL_URL?.trim();
+const playerModelUrl = configuredModelUrl || DEFAULT_PLAYER_MODEL_URL;
 
 export const localPlayerConfig = {
   displayName: "Mauro",
-  creatureId: "axolotl",
-  model: configuredModelUrl
-    ? {
-        url: configuredModelUrl,
-        scale: 1,
-        rotationY: 0,
-        yOffset: 0,
-      }
-    : null,
+  creatureId: "chatgpt-fox",
+  model: {
+    url: playerModelUrl,
+    scale: configuredModelUrl ? 1 : 0.32,
+    rotationY: 0,
+    yOffset: 0,
+  },
 } satisfies LocalPlayerConfig;
