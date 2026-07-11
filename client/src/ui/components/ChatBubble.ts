@@ -1,6 +1,7 @@
 import * as THREE from "three";
+import type { Disposable } from "../../core/Disposable";
 
-export class ChatBubble {
+export class ChatBubble implements Disposable {
   public readonly element: HTMLDivElement;
 
   private timer: ReturnType<typeof setTimeout> | null = null;
@@ -16,9 +17,7 @@ export class ChatBubble {
     worldPosition: THREE.Vector3,
     camera: THREE.Camera,
   ): void {
-    if (this.timer) {
-      clearTimeout(this.timer);
-    }
+    this.clearTimer();
 
     this.element.textContent = text;
     this.element.style.display = "block";
@@ -31,6 +30,7 @@ export class ChatBubble {
 
       this.timer = setTimeout(() => {
         this.element.style.display = "none";
+        this.timer = null;
       }, 400);
     }, 4000);
   }
@@ -47,16 +47,24 @@ export class ChatBubble {
     pos.y += 2.2;
 
     const screen = pos.project(camera);
-
     const x = (screen.x * 0.5 + 0.5) * window.innerWidth;
     const y = (-screen.y * 0.5 + 0.5) * window.innerHeight;
 
     this.element.style.transform = `translate(-50%, -100%) translate(${x}px, ${y}px)`;
+    this.element.style.opacity = screen.z > 1 ? "0" : "1";
+  }
 
-    if (screen.z > 1) {
-      this.element.style.opacity = "0";
-    } else {
-      this.element.style.opacity = "1";
+  public dispose(): void {
+    this.clearTimer();
+    this.element.remove();
+  }
+
+  private clearTimer(): void {
+    if (!this.timer) {
+      return;
     }
+
+    clearTimeout(this.timer);
+    this.timer = null;
   }
 }

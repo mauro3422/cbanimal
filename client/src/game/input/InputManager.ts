@@ -1,17 +1,20 @@
 import * as THREE from "three";
+import type { Disposable } from "../../core/Disposable";
 
-export class InputManager {
+function isEditableTarget(target: EventTarget | null): boolean {
+  return target instanceof HTMLInputElement
+    || target instanceof HTMLTextAreaElement
+    || target instanceof HTMLSelectElement
+    || (target instanceof HTMLElement && target.isContentEditable);
+}
+
+export class InputManager implements Disposable {
   private readonly pressedKeys = new Set<string>();
   private inputEnabled = true;
 
   constructor() {
-    window.addEventListener("keydown", (event) => {
-      this.pressedKeys.add(event.code);
-    });
-
-    window.addEventListener("keyup", (event) => {
-      this.pressedKeys.delete(event.code);
-    });
+    window.addEventListener("keydown", this.handleKeyDown);
+    window.addEventListener("keyup", this.handleKeyUp);
   }
 
   public setEnabled(enabled: boolean): void {
@@ -40,4 +43,22 @@ export class InputManager {
 
     return input;
   }
+
+  public dispose(): void {
+    window.removeEventListener("keydown", this.handleKeyDown);
+    window.removeEventListener("keyup", this.handleKeyUp);
+    this.pressedKeys.clear();
+  }
+
+  private handleKeyDown = (event: KeyboardEvent): void => {
+    if (!this.inputEnabled || isEditableTarget(event.target)) {
+      return;
+    }
+
+    this.pressedKeys.add(event.code);
+  };
+
+  private handleKeyUp = (event: KeyboardEvent): void => {
+    this.pressedKeys.delete(event.code);
+  };
 }

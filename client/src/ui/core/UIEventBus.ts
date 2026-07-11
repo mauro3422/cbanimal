@@ -17,6 +17,9 @@ type UIEventMap = {
   "ui:focus-changed": {
     focused: boolean;
   };
+  "ui:blocking-changed": {
+    blocked: boolean;
+  };
 };
 
 type EventName = keyof UIEventMap;
@@ -48,6 +51,10 @@ export class UIEventBus {
       eventListeners.delete(
         listener as (payload: unknown) => void,
       );
+
+      if (eventListeners.size === 0) {
+        this.listeners.delete(eventName);
+      }
     };
   }
 

@@ -1,6 +1,7 @@
 import * as THREE from "three";
+import type { Disposable } from "../../core/Disposable";
 import { ModelRepository } from "../assets/ModelRepository";
-import { CharacterState } from "./CharacterState";
+import type { MovementState } from "./MovementState";
 
 export interface CharacterModelConfig {
   url: string;
@@ -9,12 +10,14 @@ export interface CharacterModelConfig {
   yOffset?: number;
 }
 
-export class CharacterModel {
+export class CharacterModel implements Disposable {
   public readonly object = new THREE.Group();
 
-  private readonly placeholder: THREE.Mesh;
+  private readonly placeholderParts: THREE.Mesh[] = [];
+  private placeholderDisposed = false;
 
   private mixer: THREE.AnimationMixer | null = null;
+  private modelRoot: THREE.Group | null = null;
 
   private readonly actions = new Map<
     string,
@@ -23,22 +26,20 @@ export class CharacterModel {
 
   private currentAction: THREE.AnimationAction | null = null;
   private currentAnimationName: string | null = null;
-
   private loaded = false;
+  private disposed = false;
 
   constructor() {
-    this.placeholder = new THREE.Mesh(
+    const body = new THREE.Mesh(
       new THREE.CapsuleGeometry(0.5, 0.8, 8, 16),
       new THREE.MeshStandardMaterial({
         color: 0xf28482,
       }),
     );
 
-    this.placeholder.position.y = 0.9;
-    this.placeholder.castShadow = true;
-    this.placeholder.receiveShadow = true;
-
-    this.object.add(this.placeholder);
+    body.position.y = 0.9;
+    body.castShadow = true;
+    body.receiveShadow = true;
 
     const nose = new THREE.Mesh(
       new THREE.ConeGeometry(0.15, 0.5, 8),
@@ -51,15 +52,24 @@ export class CharacterModel {
     nose.position.set(0, 1, 0.65);
     nose.castShadow = true;
 
-    this.object.add(nose);
+    this.placeholderParts.push(body, nose);
+    this.object.add(body, nose);
   }
 
   public async load(
     config: CharacterModelConfig,
   ): Promise<void> {
+    if (this.disposed) {
+      return;
+    }
+
     try {
       const modelInstance =
         await ModelRepository.instantiate(config.url);
+
+      if (this.disposed) {
+        return;
+      }
 
       const model = modelInstance.scene;
 
@@ -76,9 +86,11 @@ export class CharacterModel {
         child.receiveShadow = true;
       });
 
+      this.disposePlaceholder();
       this.object.clear();
       this.object.add(model);
 
+      this.modelRoot = model;
       this.mixer = new THREE.AnimationMixer(model);
 
       for (const clip of modelInstance.animations) {
@@ -86,9 +98,10 @@ export class CharacterModel {
           .trim()
           .toLowerCase();
 
-        const action = this.mixer.clipAction(clip);
-
-        this.actions.set(normalizedName, action);
+        this.actions.set(
+          normalizedName,
+          this.mixer.clipAction(clip),
+        );
       }
 
       this.loaded = true;
@@ -114,9 +127,9 @@ export class CharacterModel {
   public play(
     animationName: string,
     fadeDuration = 0.2,
-  ): void {
+  ): boolean {
     if (!this.loaded) {
-      return;
+      return false;
     }
 
     const normalizedName = animationName
@@ -124,13 +137,13 @@ export class CharacterModel {
       .toLowerCase();
 
     if (normalizedName === this.currentAnimationName) {
-      return;
+      return true;
     }
 
     const nextAction = this.actions.get(normalizedName);
 
     if (!nextAction) {
-      return;
+      return false;
     }
 
     nextAction.reset();
@@ -148,18 +161,61 @@ export class CharacterModel {
 
     this.currentAction = nextAction;
     this.currentAnimationName = normalizedName;
+    return true;
   }
 
-  public setState(
-    state: CharacterState,
+  public setMovementState(
+    state: MovementState,
     fadeDuration = 0.2,
-  ): void {
-    this.play(state, fadeDuration);
+  ): boolean {
+    return this.play(state, fadeDuration);
   }
 
   public hasAnimation(animationName: string): boolean {
     return this.actions.has(
       animationName.trim().toLowerCase(),
     );
+  }
+
+  public get isLoaded(): boolean {
+    return this.loaded;
+  }
+
+  public dispose(): void {
+    this.disposed = true;
+    this.mixer?.stopAllAction();
+
+    if (this.mixer && this.modelRoot) {
+      this.mixer.uncacheRoot(this.modelRoot);
+    }
+
+    this.disposePlaceholder();
+    this.actions.clear();
+    this.currentAction = null;
+    this.currentAnimationName = null;
+    this.mixer = null;
+    this.modelRoot = null;
+    this.loaded = false;
+    this.object.clear();
+  }
+
+  private disposePlaceholder(): void {
+    if (this.placeholderDisposed) {
+      return;
+    }
+
+    for (const mesh of this.placeholderParts) {
+      mesh.geometry.dispose();
+
+      if (Array.isArray(mesh.material)) {
+        for (const material of mesh.material) {
+          material.dispose();
+        }
+      } else {
+        mesh.material.dispose();
+      }
+    }
+
+    this.placeholderDisposed = true;
   }
 }

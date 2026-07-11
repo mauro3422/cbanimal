@@ -14,3 +14,9 @@ if (!container) {
 
 const game = new Game(container);
 game.start();
+
+if (import.meta.hot) {
+  import.meta.hot.dispose(() => {
+    game.dispose();
+  });
+}
