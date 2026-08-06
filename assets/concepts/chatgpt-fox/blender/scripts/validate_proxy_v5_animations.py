@@ -9,9 +9,12 @@ from mathutils import Vector
 
 RIG_NAME = "FOX_RIG_GUIDE"
 MODEL_COLLECTION = "MODEL_PROXY"
-ACTION_NAMES = ("idle", "walking", "sitting", "wave")
+ACTION_NAMES = ("idle", "walking", "sitting", "wave", "laugh", "angry", "sleep")
 VALIDATION_PATH = Path(
     r"C:\dev\cbanimal\assets\concepts\chatgpt-fox\blender\proxy-v5-animation-validation.json"
+)
+IK_VALIDATION_PATH = Path(
+    r"C:\dev\cbanimal\assets\concepts\chatgpt-fox\blender\proxy-v5-ik-walk-validation.json"
 )
 
 armature = bpy.data.objects.get(RIG_NAME)
@@ -22,6 +25,30 @@ if armature is None or armature.type != "ARMATURE" or model is None:
 missing_actions = [name for name in ACTION_NAMES if bpy.data.actions.get(name) is None]
 if missing_actions:
     raise RuntimeError(f"Proxy v5 is missing required actions: {missing_actions}")
+
+required_knee_bones = {
+    "knee.L": "thigh.L",
+    "knee.R": "thigh.R",
+}
+for bone_name, expected_parent in required_knee_bones.items():
+    bone = armature.data.bones.get(bone_name)
+    if bone is None:
+        raise RuntimeError(f"Proxy v5 is missing articulated knee bone: {bone_name}")
+    if bone.parent is None or bone.parent.name != expected_parent:
+        raise RuntimeError(f"{bone_name} must be parented to {expected_parent}")
+    if bone.use_deform:
+        raise RuntimeError(f"{bone_name} is a presentation joint and must not deform vertices")
+
+required_knee_meshes = {
+    "MDL_KNEE_L": "knee.L",
+    "MDL_KNEE_R": "knee.R",
+}
+for object_name, expected_bone in required_knee_meshes.items():
+    obj = bpy.data.objects.get(object_name)
+    if obj is None:
+        raise RuntimeError(f"Proxy v5 is missing knee mesh: {object_name}")
+    if obj.parent != armature or obj.parent_type != "BONE" or obj.parent_bone != expected_bone:
+        raise RuntimeError(f"{object_name} must be attached to {expected_bone}")
 
 
 def armature_modifier(obj: bpy.types.Object) -> bpy.types.ArmatureModifier | None:
@@ -85,6 +112,12 @@ for object_name, expected_groups in required_deforming.items():
 tracked_objects = (
     "MDL_HAND_L",
     "MDL_HAND_R",
+    "MDL_THIGH_L",
+    "MDL_THIGH_R",
+    "MDL_KNEE_L",
+    "MDL_KNEE_R",
+    "MDL_SHIN_L",
+    "MDL_SHIN_R",
     "MDL_FOOT_L",
     "MDL_FOOT_R",
     "MDL_TAIL_TIP",
@@ -159,19 +192,24 @@ def evaluated_ring_center(
 
 
 def evaluated_collection_bounds() -> dict[str, list[float]]:
+    """Return exact evaluated mesh-vertex bounds, not stale object bound boxes."""
     depsgraph = bpy.context.evaluated_depsgraph_get()
     minimum = Vector((float("inf"), float("inf"), float("inf")))
     maximum = Vector((float("-inf"), float("-inf"), float("-inf")))
     for obj in mesh_objects:
         evaluated = obj.evaluated_get(depsgraph)
-        for corner in evaluated.bound_box:
-            world = evaluated.matrix_world @ Vector(corner)
-            minimum.x = min(minimum.x, world.x)
-            minimum.y = min(minimum.y, world.y)
-            minimum.z = min(minimum.z, world.z)
-            maximum.x = max(maximum.x, world.x)
-            maximum.y = max(maximum.y, world.y)
-            maximum.z = max(maximum.z, world.z)
+        mesh = evaluated.to_mesh()
+        try:
+            for vertex in mesh.vertices:
+                world = evaluated.matrix_world @ vertex.co
+                minimum.x = min(minimum.x, world.x)
+                minimum.y = min(minimum.y, world.y)
+                minimum.z = min(minimum.z, world.z)
+                maximum.x = max(maximum.x, world.x)
+                maximum.y = max(maximum.y, world.y)
+                maximum.z = max(maximum.z, world.z)
+        finally:
+            evaluated.to_mesh_clear()
     values = list(minimum) + list(maximum)
     if not finite(values):
         raise RuntimeError("Non-finite proxy collection bounds")
@@ -208,22 +246,160 @@ def evaluate(action_name: str, frames: list[int]) -> dict[str, dict]:
     return result
 
 
+if not IK_VALIDATION_PATH.is_file():
+    raise FileNotFoundError(IK_VALIDATION_PATH)
+ik_walk = json.loads(IK_VALIDATION_PATH.read_text(encoding="utf-8"))
+if ik_walk.get("stage") != "proxy_v5_ik_walk_mathematically_validated":
+    raise RuntimeError(f"Unexpected IK walk stage: {ik_walk.get('stage')}")
+ik_kinematics = ik_walk.get("kinematics", {})
+ik_validation = ik_walk.get("validation", {})
+if ik_kinematics.get("frameRange") != [1, 13]:
+    raise RuntimeError(f"Walking action must use the verified 1-13 frame cycle: {ik_kinematics}")
+if abs(float(ik_kinematics.get("fps", 0.0)) - 24.0) > 1e-6:
+    raise RuntimeError(f"Walking validation must use 24 fps: {ik_kinematics}")
+if abs(float(ik_kinematics.get("durationSeconds", 0.0)) - 0.5) > 1e-6:
+    raise RuntimeError(f"Walking cycle duration changed: {ik_kinematics}")
+if abs(float(ik_kinematics.get("runtimeScale", 0.0)) - 0.32) > 1e-6:
+    raise RuntimeError(f"Walking runtime scale changed: {ik_kinematics}")
+if abs(float(ik_kinematics.get("referenceSpeed", 0.0)) - 1.688) > 1e-6:
+    raise RuntimeError(f"Walking/player speed contract changed: {ik_kinematics}")
+if abs(float(ik_kinematics.get("strideHalfBlender", 0.0)) - 0.65) > 1e-6:
+    raise RuntimeError(f"Walking stride changed: {ik_kinematics}")
+if abs(float(ik_kinematics.get("stanceFraction", 0.0)) - 0.5) > 1e-6:
+    raise RuntimeError(f"Walking stance fraction changed: {ik_kinematics}")
+
 checks = {
     "idle": evaluate("idle", [1, 20, 40]),
-    "walking": evaluate("walking", [1, 9, 17, 25, 32]),
+    "walking": evaluate("walking", [1, 2, 4, 6, 7, 8, 10, 12, 13]),
     "sitting": evaluate("sitting", [1, 12, 24]),
     "wave": evaluate("wave", [1, 10, 20, 30, 40, 48]),
+    "laugh": evaluate("laugh", [1, 8, 16, 24, 32, 48]),
+    "angry": evaluate("angry", [1, 10, 18, 26, 34, 48]),
+    "sleep": evaluate("sleep", [1, 12, 36, 60, 72]),
 }
 
-walk = checks["walking"]
-if distance(tuple(walk["1"]["positions"]["MDL_FOOT_R"]), tuple(walk["17"]["positions"]["MDL_FOOT_R"])) < 0.45:
-    raise RuntimeError("Walking validation failed: right foot travel is too small")
-if distance(tuple(walk["1"]["positions"]["MDL_HAND_R"]), tuple(walk["17"]["positions"]["MDL_HAND_R"])) < 0.20:
-    raise RuntimeError("Walking validation failed: right hand swing is too small")
-if distance(tuple(walk["1"]["positions"]["MDL_TAIL_TIP"]), tuple(walk["17"]["positions"]["MDL_TAIL_TIP"])) < 0.12:
-    raise RuntimeError("Walking validation failed: tail sway is too small")
-if distance(tuple(walk["1"]["tailRootTipCenter"]), tuple(walk["17"]["tailRootTipCenter"])) < 0.04:
-    raise RuntimeError("Walking validation failed: deforming tail-root endpoint did not follow tail.01")
+walking_action_range = [round(float(value), 3) for value in bpy.data.actions["walking"].frame_range]
+if walking_action_range != [1.0, 13.0]:
+    raise RuntimeError(f"Walking action frame range changed: {walking_action_range}")
+
+walk_joint_samples: dict[str, dict] = {}
+walk_body_motion = {
+    "cycleDurationSeconds": float(ik_kinematics["durationSeconds"]),
+    "fps": float(ik_kinematics["fps"]),
+    "runtimeScale": float(ik_kinematics["runtimeScale"]),
+    "referenceSpeed": float(ik_kinematics["referenceSpeed"]),
+    "expectedStanceFootSpeed": float(ik_kinematics["expectedStanceFootSpeed"]),
+    "stanceFraction": float(ik_kinematics["stanceFraction"]),
+    "strideSweepRuntime": round(
+        float(ik_kinematics["strideHalfBlender"])
+        * 2.0
+        * float(ik_kinematics["runtimeScale"]),
+        6,
+    ),
+    "legs": {},
+}
+
+for side in ("L", "R"):
+    leg = ik_validation.get("legs", {}).get(side)
+    if not isinstance(leg, dict):
+        raise RuntimeError(f"IK walking validation is missing leg {side}")
+    flexion_range = [float(value) for value in leg.get("kneeFlexionRangeDegrees", [])]
+    support_z = [float(value) for value in leg.get("supportFootMinimumZRange", [])]
+    swing_clearance = [float(value) for value in leg.get("swingFootClearanceRange", [])]
+    support_speed = [float(value) for value in leg.get("supportFootSpeedRuntimeRange", [])]
+    upper_length = [float(value) for value in leg.get("upperLengthRange", [])]
+    lower_length = [float(value) for value in leg.get("lowerLengthRange", [])]
+    if len(flexion_range) != 2 or not 25.0 <= flexion_range[0] <= 40.0 or not 95.0 <= flexion_range[1] <= 105.0:
+        raise RuntimeError(f"Leg {side} knee range is not a complete stance/swing cycle: {leg}")
+    if len(support_z) != 2 or support_z[0] < -0.001 or support_z[1] > 0.01:
+        raise RuntimeError(f"Leg {side} support foot is not planted: {leg}")
+    if len(swing_clearance) != 2 or swing_clearance[0] < 0.08 or swing_clearance[1] < 0.50:
+        raise RuntimeError(f"Leg {side} swing foot clearance is invalid: {leg}")
+    if len(support_speed) != 2 or support_speed[0] < 1.35 or support_speed[1] > 2.10:
+        raise RuntimeError(f"Leg {side} stance-foot speed is inconsistent: {leg}")
+    if float(leg.get("referenceSpeedErrorPercent", 100.0)) > 3.0:
+        raise RuntimeError(f"Leg {side} does not match the runtime translation speed: {leg}")
+    if len(upper_length) != 2 or upper_length[1] - upper_length[0] > 1e-5:
+        raise RuntimeError(f"Leg {side} upper segment changes length: {leg}")
+    if len(lower_length) != 2 or lower_length[1] - lower_length[0] > 1e-5:
+        raise RuntimeError(f"Leg {side} lower segment changes length: {leg}")
+
+    frame_report = ik_kinematics.get("frameReport", {})
+    thigh_angles = [
+        float(frame["legs"][side]["solution"]["thighDegrees"])
+        for frame in frame_report.values()
+    ]
+    extension_ratios = [
+        float(frame["legs"][side]["solution"]["extensionRatio"])
+        for frame in frame_report.values()
+    ]
+    if max(thigh_angles) - min(thigh_angles) < 55.0:
+        raise RuntimeError(f"Leg {side} thigh does not perform a readable full step: {thigh_angles}")
+    if max(extension_ratios) > 0.970001:
+        raise RuntimeError(f"Leg {side} exceeds the 97% extension limit: {extension_ratios}")
+
+    walk_body_motion["legs"][side] = {
+        **leg,
+        "thighAngleRangeDegrees": [round(min(thigh_angles), 6), round(max(thigh_angles), 6)],
+        "maximumExtensionRatio": round(max(extension_ratios), 6),
+    }
+frame_report = ik_kinematics.get("frameReport", {})
+pelvis_lateral_values = [float(frame["pelvisLocation"][0]) for frame in frame_report.values()]
+pelvis_vertical_values = [float(frame["pelvisLocation"][1]) for frame in frame_report.values()]
+pelvis_lateral_travel = max(pelvis_lateral_values) - min(pelvis_lateral_values)
+pelvis_vertical_travel = max(pelvis_vertical_values) - min(pelvis_vertical_values)
+if not 0.12 <= pelvis_lateral_travel <= 0.16:
+    raise RuntimeError(f"Walking pelvis weight shift is invalid: {pelvis_lateral_travel}")
+if not 0.07 <= pelvis_vertical_travel <= 0.12:
+    raise RuntimeError(f"Walking pelvis rise/fall is invalid: {pelvis_vertical_travel}")
+walk_body_motion["pelvisLateralTravel"] = round(pelvis_lateral_travel, 6)
+walk_body_motion["pelvisVerticalTravel"] = round(pelvis_vertical_travel, 6)
+walk_body_motion["poseFrames"] = {
+    "contactLeft": 1,
+    "compressionLeft": 2,
+    "passingLeft": 4,
+    "elevationLeft": 6,
+    "contactRight": 7,
+    "compressionRight": 8,
+    "passingRight": 10,
+    "elevationRight": 12,
+}
+
+
+for frame, sample in ik_validation.get("samples", {}).items():
+    frame_payload: dict[str, object] = {"legs": {}}
+    for side in ("L", "R"):
+        leg_sample = sample["legs"][side]
+        frame_payload["legs"][side] = {
+            "stance": bool(leg_sample["stance"]),
+            "worldKneeFlexionDegrees": float(leg_sample["worldKneeFlexionDegrees"]),
+            "footMinimumZ": float(leg_sample["footBounds"]["minimum"][2]),
+            "upperLength": float(leg_sample["upperLength"]),
+            "lowerLength": float(leg_sample["lowerLength"]),
+            "hip": leg_sample["hip"],
+            "knee": leg_sample["knee"],
+            "ankle": leg_sample["ankle"],
+        }
+    walk_joint_samples[str(frame)] = frame_payload
+
+for frame, sample in checks["walking"].items():
+    minimum_z = float(sample["bounds"]["minimum"][2])
+    if minimum_z < -0.01 or minimum_z > 0.01:
+        raise RuntimeError(
+            f"Walking evaluated mesh vertices are not grounded at frame {frame}: {minimum_z}"
+        )
+
+if distance(
+    tuple(checks["walking"]["1"]["positions"]["MDL_HAND_R"]),
+    tuple(checks["walking"]["7"]["positions"]["MDL_HAND_R"]),
+) < 0.20:
+    raise RuntimeError("Walking validation failed: right hand counter-swing is too small")
+if distance(
+    tuple(checks["walking"]["1"]["positions"]["MDL_TAIL_TIP"]),
+    tuple(checks["walking"]["4"]["positions"]["MDL_TAIL_TIP"]),
+) < 0.10:
+    raise RuntimeError("Walking validation failed: tail counterbalance is too small")
+
 
 sit = checks["sitting"]
 if sit["12"]["pelvisBoneHead"][2] > sit["1"]["pelvisBoneHead"][2] - 0.55:
@@ -238,6 +414,31 @@ if distance(tuple(wave["10"]["positions"]["MDL_HAND_R"]), tuple(wave["20"]["posi
     raise RuntimeError("Wave validation failed: wrist oscillation is too small")
 if distance(tuple(wave["1"]["positions"]["MDL_HAND_R"]), tuple(wave["48"]["positions"]["MDL_HAND_R"])) > 0.03:
     raise RuntimeError("Wave validation failed: final pose does not return to rest")
+
+laugh = checks["laugh"]
+if distance(tuple(laugh["8"]["positions"]["MDL_HEAD"]), tuple(laugh["16"]["positions"]["MDL_HEAD"])) < 0.08:
+    raise RuntimeError("Laugh validation failed: head bob is too small")
+if distance(tuple(laugh["8"]["positions"]["MDL_TAIL_TIP"]), tuple(laugh["16"]["positions"]["MDL_TAIL_TIP"])) < 0.12:
+    raise RuntimeError("Laugh validation failed: tail wag is too small")
+if distance(tuple(laugh["1"]["positions"]["MDL_HEAD"]), tuple(laugh["48"]["positions"]["MDL_HEAD"])) > 0.03:
+    raise RuntimeError("Laugh validation failed: final pose does not return to rest")
+
+angry = checks["angry"]
+for hand_name in ("MDL_HAND_L", "MDL_HAND_R"):
+    if distance(tuple(angry["1"]["positions"][hand_name]), tuple(angry["10"]["positions"][hand_name])) < 0.30:
+        raise RuntimeError(f"Angry validation failed: {hand_name} did not reach the angry pose")
+if distance(tuple(angry["18"]["positions"]["MDL_HAND_R"]), tuple(angry["26"]["positions"]["MDL_HAND_R"])) < 0.20:
+    raise RuntimeError("Angry validation failed: clenched-fist shake is too small")
+if distance(tuple(angry["1"]["positions"]["MDL_HEAD"]), tuple(angry["48"]["positions"]["MDL_HEAD"])) > 0.03:
+    raise RuntimeError("Angry validation failed: final pose does not return to rest")
+
+sleep = checks["sleep"]
+if distance(tuple(sleep["1"]["positions"]["MDL_HEAD"]), tuple(sleep["36"]["positions"]["MDL_HEAD"])) < 0.15:
+    raise RuntimeError("Sleep validation failed: head droop is too small")
+if distance(tuple(sleep["12"]["positions"]["MDL_HEAD"]), tuple(sleep["36"]["positions"]["MDL_HEAD"])) < 0.015:
+    raise RuntimeError("Sleep validation failed: breathing motion is too small")
+if distance(tuple(sleep["1"]["positions"]["MDL_HEAD"]), tuple(sleep["72"]["positions"]["MDL_HEAD"])) < 0.12:
+    raise RuntimeError("Sleep validation failed: final pose does not remain asleep")
 
 floor_minimums = {
     action_name: {
@@ -259,7 +460,7 @@ bpy.context.scene.frame_start = 1
 bpy.context.scene.frame_end = 40
 bpy.context.scene.frame_set(1)
 bpy.context.view_layer.update()
-bpy.context.scene["cbanimal_proxy_v5_animation_stage"] = "validated_existing_v3_clips_with_deformation"
+bpy.context.scene["cbanimal_proxy_v5_animation_stage"] = "seven_gameplay_clips_validated"
 bpy.ops.object.select_all(action="DESELECT")
 bpy.ops.wm.save_as_mainfile(filepath=bpy.data.filepath)
 
@@ -267,8 +468,28 @@ payload = {
     "stage": "proxy_v5_animations_and_deformation_validated",
     "blend": bpy.data.filepath,
     "actions": list(ACTION_NAMES),
+    "frameRanges": {
+        name: [round(float(value), 3) for value in bpy.data.actions[name].frame_range]
+        for name in ACTION_NAMES
+    },
+    "runtimePolicy": {
+        "loop": ["idle", "walking"],
+        "once": ["sitting", "wave", "laugh", "angry", "sleep"],
+    },
+    "rig": {
+        "bones": len(armature.data.bones),
+        "kneeBones": {
+            name: {
+                "parent": armature.data.bones[name].parent.name,
+                "useDeform": armature.data.bones[name].use_deform,
+            }
+            for name in required_knee_bones
+        },
+    },
     "meshBindings": {obj.name: binding_kind(obj) for obj in mesh_objects},
     "deformingObjects": deforming_report,
+    "kneeMotion": walk_joint_samples,
+    "walkBodyMotion": walk_body_motion,
     "minimumValidatedZ": round(minimum_z, 5),
     "floorMinimums": floor_minimums,
     "checks": checks,

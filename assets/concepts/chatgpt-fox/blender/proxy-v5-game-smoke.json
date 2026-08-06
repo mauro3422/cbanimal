@@ -1,26 +1,26 @@
 {
   "stage": "proxy_v5_browser_smoke_verified",
-  "baseUrl": "http://127.0.0.1:4173",
+  "baseUrl": "http://127.0.0.1:4175",
   "page": {
     "status": 200,
     "contentType": "text/html",
-    "bytes": 469
+    "bytes": 511
   },
   "model": {
-    "url": "/models/chatgpt-fox-proxy-v5.glb",
+    "url": "/models/chatgpt-fox-proxy-v5.glb?rev=fullbody-footlock-3",
     "status": 200,
     "contentType": "model/gltf-binary",
-    "servedBytes": 189924,
+    "servedBytes": 261100,
     "file": {
       "path": "client/public/models/chatgpt-fox-proxy-v5.glb",
-      "bytes": 189924,
-      "sha256": "2e381baf55bff5afd61f3a612ea711d9dc027fac19cc539500f286fa2e6486b3"
+      "bytes": 261100,
+      "sha256": "055df4649a87bb5e45cc35a272179f2b2a38374006546c9da8d760f9ea99e83b"
     }
   },
   "screenshot": {
     "path": "assets/concepts/chatgpt-fox/blender/game_smoke_proxy_v5.png",
-    "bytes": 51583,
-    "sha256": "103311be345db347e9ee0cee0d4fdd95397de251ade2177168bd6dde156890b4"
+    "bytes": 51434,
+    "sha256": "ec10ebe86e026a9383d322d926fa0e5791a719bdf681feb1a566ee2f6066c3f3"
   },
   "pixelEvidence": {
     "width": 1280,
@@ -31,8 +31,8 @@
       896,
       662
     ],
-    "tealPixels": 23491,
-    "cyanPixels": 1474,
+    "tealPixels": 23415,
+    "cyanPixels": 1373,
     "placeholderPinkPixels": 0
   },
   "chrome": {
@@ -46,11 +46,11 @@
       "--run-all-compositor-stages-before-draw",
       "--window-size=1280,720",
       "--virtual-time-budget=9000",
-      "--user-data-dir=C:\\Users\\mauro\\AppData\\Local\\Temp\\cbanimal-v5-chrome-znezyjd4",
+      "--user-data-dir=C:\\Users\\mauro\\AppData\\Local\\Temp\\cbanimal-v5-chrome-jxtl5kqq",
       "--screenshot=<path>",
-      "http://127.0.0.1:4173/"
+      "http://127.0.0.1:4175/"
     ],
     "exitCode": 0,
-    "stderrTail": "51583 bytes written to file C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\game_smoke_proxy_v5.png\n"
+    "stderrTail": "51434 bytes written to file C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\game_smoke_proxy_v5.png\n"
   }
 }

@@ -1,0 +1,400 @@
+{
+  "stage": "proxy_v5_gameplay_walk_visual_smoke_verified",
+  "baseUrl": "http://127.0.0.1:4176",
+  "capture": {
+    "viewport": [
+      1280,
+      720
+    ],
+    "intervalSeconds": 0.043,
+    "frames": [
+      "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-01.png",
+      "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-02.png",
+      "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-03.png",
+      "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-04.png",
+      "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-05.png",
+      "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-06.png",
+      "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-07.png",
+      "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-08.png"
+    ],
+    "contactSheet": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/walk-gameplay-camera-contact.jpg"
+  },
+  "visualAnalysis": {
+    "frameCount": 8,
+    "foregroundPixels": [
+      9692,
+      6847,
+      6862,
+      6831,
+      6855,
+      6846,
+      6847,
+      6864
+    ],
+    "boundingBoxes": [
+      [
+        613,
+        246,
+        812,
+        587
+      ],
+      [
+        612,
+        245,
+        777,
+        587
+      ],
+      [
+        615,
+        244,
+        777,
+        587
+      ],
+      [
+        612,
+        245,
+        777,
+        587
+      ],
+      [
+        614,
+        246,
+        777,
+        587
+      ],
+      [
+        613,
+        245,
+        777,
+        587
+      ],
+      [
+        612,
+        245,
+        777,
+        587
+      ],
+      [
+        615,
+        244,
+        777,
+        587
+      ]
+    ],
+    "boundingBoxWidthRange": [
+      162,
+      199
+    ],
+    "boundingBoxHeightRange": [
+      341,
+      343
+    ],
+    "alignedUnionBounds": [
+      60,
+      8,
+      259,
+      351
+    ],
+    "detectedVerticalGapPixels": 187,
+    "analysisBands": {
+      "upperLeg": [
+        290,
+        323
+      ],
+      "lowerLeg": [
+        323,
+        351
+      ]
+    },
+    "comparisonPairs": [
+      {
+        "frames": [
+          1,
+          2
+        ],
+        "upperLegXorPixels": 1247,
+        "lowerLegXorPixels": 2137,
+        "totalXorPixels": 6991,
+        "upperToLowerRatio": 0.5835
+      },
+      {
+        "frames": [
+          1,
+          3
+        ],
+        "upperLegXorPixels": 1247,
+        "lowerLegXorPixels": 2137,
+        "totalXorPixels": 6886,
+        "upperToLowerRatio": 0.5835
+      },
+      {
+        "frames": [
+          1,
+          4
+        ],
+        "upperLegXorPixels": 1247,
+        "lowerLegXorPixels": 2137,
+        "totalXorPixels": 7021,
+        "upperToLowerRatio": 0.5835
+      },
+      {
+        "frames": [
+          1,
+          5
+        ],
+        "upperLegXorPixels": 1246,
+        "lowerLegXorPixels": 2022,
+        "totalXorPixels": 6811,
+        "upperToLowerRatio": 0.6162
+      },
+      {
+        "frames": [
+          1,
+          6
+        ],
+        "upperLegXorPixels": 1247,
+        "lowerLegXorPixels": 2137,
+        "totalXorPixels": 6992,
+        "upperToLowerRatio": 0.5835
+      },
+      {
+        "frames": [
+          1,
+          7
+        ],
+        "upperLegXorPixels": 1247,
+        "lowerLegXorPixels": 2137,
+        "totalXorPixels": 6987,
+        "upperToLowerRatio": 0.5835
+      },
+      {
+        "frames": [
+          1,
+          8
+        ],
+        "upperLegXorPixels": 1247,
+        "lowerLegXorPixels": 2137,
+        "totalXorPixels": 6890,
+        "upperToLowerRatio": 0.5835
+      },
+      {
+        "frames": [
+          2,
+          3
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 56,
+        "totalXorPixels": 715,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          2,
+          4
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 0,
+        "totalXorPixels": 116,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          2,
+          5
+        ],
+        "upperLegXorPixels": 1,
+        "lowerLegXorPixels": 115,
+        "totalXorPixels": 852,
+        "upperToLowerRatio": 0.0087
+      },
+      {
+        "frames": [
+          2,
+          6
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 0,
+        "totalXorPixels": 155,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          2,
+          7
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 0,
+        "totalXorPixels": 66,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          2,
+          8
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 56,
+        "totalXorPixels": 719,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          3,
+          4
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 56,
+        "totalXorPixels": 771,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          3,
+          5
+        ],
+        "upperLegXorPixels": 1,
+        "lowerLegXorPixels": 115,
+        "totalXorPixels": 391,
+        "upperToLowerRatio": 0.0087
+      },
+      {
+        "frames": [
+          3,
+          6
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 56,
+        "totalXorPixels": 618,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          3,
+          7
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 56,
+        "totalXorPixels": 675,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          3,
+          8
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 0,
+        "totalXorPixels": 4,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          4,
+          5
+        ],
+        "upperLegXorPixels": 1,
+        "lowerLegXorPixels": 115,
+        "totalXorPixels": 914,
+        "upperToLowerRatio": 0.0087
+      },
+      {
+        "frames": [
+          4,
+          6
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 0,
+        "totalXorPixels": 239,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          4,
+          7
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 0,
+        "totalXorPixels": 170,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          4,
+          8
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 56,
+        "totalXorPixels": 775,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          5,
+          6
+        ],
+        "upperLegXorPixels": 1,
+        "lowerLegXorPixels": 115,
+        "totalXorPixels": 759,
+        "upperToLowerRatio": 0.0087
+      },
+      {
+        "frames": [
+          5,
+          7
+        ],
+        "upperLegXorPixels": 1,
+        "lowerLegXorPixels": 115,
+        "totalXorPixels": 810,
+        "upperToLowerRatio": 0.0087
+      },
+      {
+        "frames": [
+          5,
+          8
+        ],
+        "upperLegXorPixels": 1,
+        "lowerLegXorPixels": 115,
+        "totalXorPixels": 387,
+        "upperToLowerRatio": 0.0087
+      },
+      {
+        "frames": [
+          6,
+          7
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 0,
+        "totalXorPixels": 119,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          6,
+          8
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 56,
+        "totalXorPixels": 622,
+        "upperToLowerRatio": 0.0
+      },
+      {
+        "frames": [
+          7,
+          8
+        ],
+        "upperLegXorPixels": 0,
+        "lowerLegXorPixels": 56,
+        "totalXorPixels": 679,
+        "upperToLowerRatio": 0.0
+      }
+    ],
+    "averageUpperToLowerRatio": 0.5882,
+    "readableUpperLegPairs": 7,
+    "maximumUpperLegXorPixels": 1247
+  },
+  "consoleAnimations": [
+    "Animación activa: idle",
+    "Animación activa: walking",
+    "Animación activa: idle"
+  ]
+}

@@ -3,3 +3,7 @@ dist/
 .env
 *.local
 *.blend1
+
+# Local Blender recovery checkpoints
+.bridge/*_pre_*.blend
+.bridge/*_pre_*.py

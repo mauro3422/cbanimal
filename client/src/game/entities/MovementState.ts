@@ -1,7 +1,7 @@
 export const MovementState = {
   Idle: "idle",
-  Walking: "walk",
-  Sitting: "sit",
+  Walking: "walking",
+  Sitting: "sitting",
 } as const;
 
 export type MovementState =

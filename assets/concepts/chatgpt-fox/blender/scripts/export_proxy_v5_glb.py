@@ -9,7 +9,7 @@ import bpy
 MODEL_COLLECTION = "MODEL_PROXY"
 RIG_COLLECTION = "RIG_GUIDE"
 RIG_NAME = "FOX_RIG_GUIDE"
-REQUIRED_ACTIONS = ("idle", "walking", "sitting", "wave")
+REQUIRED_ACTIONS = ("idle", "walking", "sitting", "wave", "laugh", "angry", "sleep")
 EXPORT_PATH = Path(
     r"C:\dev\cbanimal\client\public\models\chatgpt-fox-proxy-v5.glb"
 )

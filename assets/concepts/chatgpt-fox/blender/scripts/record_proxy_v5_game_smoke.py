@@ -132,7 +132,7 @@ def main() -> None:
     if missing:
         raise FileNotFoundError(f"Proxy v5 smoke inputs are missing: {missing}")
     config_text = CONFIG_PATH.read_text(encoding="utf-8")
-    model_url = "/models/chatgpt-fox-proxy-v5.glb"
+    model_url = "/models/chatgpt-fox-proxy-v5.glb?rev=fullbody-footlock-3"
     if f'"{model_url}"' not in config_text:
         raise RuntimeError("Local player configuration does not point to proxy v5")
 

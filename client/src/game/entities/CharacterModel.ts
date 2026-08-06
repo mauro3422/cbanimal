@@ -3,6 +3,12 @@ import type { Disposable } from "../../core/Disposable";
 import { ModelRepository } from "../assets/ModelRepository";
 import type { MovementState } from "./MovementState";
 
+const LOOPING_ANIMATIONS = new Set(["idle", "walking"]);
+// Calibrated against the exported GLB at scale 0.32, not Blender frame time.
+const WALK_REFERENCE_SPEED = 1.385;
+
+export type WalkingSupportFoot = "left" | "right";
+
 export interface CharacterModelConfig {
   url: string;
   scale?: number;
@@ -18,6 +24,8 @@ export class CharacterModel implements Disposable {
 
   private mixer: THREE.AnimationMixer | null = null;
   private modelRoot: THREE.Group | null = null;
+  private leftFoot: THREE.Object3D | null = null;
+  private rightFoot: THREE.Object3D | null = null;
 
   private readonly actions = new Map<
     string,
@@ -26,6 +34,7 @@ export class CharacterModel implements Disposable {
 
   private currentAction: THREE.AnimationAction | null = null;
   private currentAnimationName: string | null = null;
+  private walkingTimeScale = 1;
   private loaded = false;
   private disposed = false;
 
@@ -91,17 +100,16 @@ export class CharacterModel implements Disposable {
       this.object.add(model);
 
       this.modelRoot = model;
+      this.leftFoot = model.getObjectByName("MDL_FOOT_L") ?? null;
+      this.rightFoot = model.getObjectByName("MDL_FOOT_R") ?? null;
       this.mixer = new THREE.AnimationMixer(model);
 
       for (const clip of modelInstance.animations) {
-        const normalizedName = clip.name
-          .trim()
-          .toLowerCase();
+        const normalizedName = clip.name.trim().toLowerCase();
+        const action = this.mixer.clipAction(clip);
 
-        this.actions.set(
-          normalizedName,
-          this.mixer.clipAction(clip),
-        );
+        this.configureAction(normalizedName, action);
+        this.actions.set(normalizedName, action);
       }
 
       this.loaded = true;
@@ -124,6 +132,38 @@ export class CharacterModel implements Disposable {
     this.mixer?.update(deltaTime);
   }
 
+  public setWalkingSpeed(unitsPerSecond: number): void {
+    this.walkingTimeScale = Math.max(0.1, unitsPerSecond / WALK_REFERENCE_SPEED);
+    this.actions.get("walking")?.setEffectiveTimeScale(this.walkingTimeScale);
+  }
+
+  public getWalkingSupportFootWorldPosition(
+    target: THREE.Vector3,
+  ): WalkingSupportFoot | null {
+    if (
+      this.currentAnimationName !== "walking"
+      || !this.currentAction
+      || !this.leftFoot
+      || !this.rightFoot
+    ) {
+      return null;
+    }
+
+    const duration = this.currentAction.getClip().duration;
+    if (duration <= 0) {
+      return null;
+    }
+
+    const wrappedTime = ((this.currentAction.time % duration) + duration) % duration;
+    const normalizedPhase = wrappedTime / duration;
+    const supportFoot: WalkingSupportFoot = normalizedPhase < 0.5 ? "left" : "right";
+    const footObject = supportFoot === "left" ? this.leftFoot : this.rightFoot;
+
+    this.object.updateWorldMatrix(true, true);
+    footObject.getWorldPosition(target);
+    return supportFoot;
+  }
+
   public play(
     animationName: string,
     fadeDuration = 0.2,
@@ -143,12 +183,20 @@ export class CharacterModel implements Disposable {
     const nextAction = this.actions.get(normalizedName);
 
     if (!nextAction) {
+      if (import.meta.env.DEV) {
+        console.warn(`Animación no encontrada: ${normalizedName}`, {
+          available: [...this.actions.keys()],
+        });
+      }
+
       return false;
     }
 
     nextAction.reset();
     nextAction.enabled = true;
-    nextAction.setEffectiveTimeScale(1);
+    nextAction.setEffectiveTimeScale(
+      normalizedName === "walking" ? this.walkingTimeScale : 1,
+    );
     nextAction.setEffectiveWeight(1);
 
     if (fadeDuration <= 0 || !this.currentAction) {
@@ -161,6 +209,11 @@ export class CharacterModel implements Disposable {
 
     this.currentAction = nextAction;
     this.currentAnimationName = normalizedName;
+
+    if (import.meta.env.DEV) {
+      console.debug("Animación activa:", normalizedName);
+    }
+
     return true;
   }
 
@@ -197,6 +250,20 @@ export class CharacterModel implements Disposable {
     this.modelRoot = null;
     this.loaded = false;
     this.object.clear();
+  }
+
+  private configureAction(
+    animationName: string,
+    action: THREE.AnimationAction,
+  ): void {
+    if (LOOPING_ANIMATIONS.has(animationName)) {
+      action.setLoop(THREE.LoopRepeat, Infinity);
+      action.clampWhenFinished = false;
+      return;
+    }
+
+    action.setLoop(THREE.LoopOnce, 1);
+    action.clampWhenFinished = true;
   }
 
   private disposePlaceholder(): void {

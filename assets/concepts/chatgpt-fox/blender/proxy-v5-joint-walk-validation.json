@@ -1,0 +1,563 @@
+{
+  "stage": "proxy_v5_articulated_joint_walk_refined",
+  "blend": "C:\\Dev\\cbanimal\\assets\\concepts\\chatgpt-fox\\blender\\chatgpt_fox_proxy_v5.blend",
+  "geometry": {
+    "applied": true,
+    "before": {
+      "MDL_HIP_L": {
+        "minimum": [
+          -0.68113,
+          -0.25757,
+          1.97414
+        ],
+        "maximum": [
+          -0.14887,
+          0.25757,
+          2.41586
+        ],
+        "dimensions": [
+          0.53225,
+          0.51514,
+          0.44173
+        ]
+      },
+      "MDL_HIP_R": {
+        "minimum": [
+          0.14887,
+          -0.25757,
+          1.97414
+        ],
+        "maximum": [
+          0.68113,
+          0.25757,
+          2.41586
+        ],
+        "dimensions": [
+          0.53225,
+          0.51514,
+          0.44173
+        ]
+      },
+      "MDL_THIGH_L": {
+        "minimum": [
+          -0.73198,
+          -0.28723,
+          1.21582
+        ],
+        "maximum": [
+          -0.14829,
+          0.28723,
+          2.30518
+        ],
+        "dimensions": [
+          0.5837,
+          0.57447,
+          1.08936
+        ]
+      },
+      "MDL_THIGH_R": {
+        "minimum": [
+          0.14829,
+          -0.28723,
+          1.21582
+        ],
+        "maximum": [
+          0.73198,
+          0.28723,
+          2.30518
+        ],
+        "dimensions": [
+          0.5837,
+          0.57447,
+          1.08936
+        ]
+      },
+      "MDL_KNEE_L": {
+        "minimum": [
+          -0.67511,
+          -0.23702,
+          1.088
+        ],
+        "maximum": [
+          -0.22489,
+          0.23702,
+          1.592
+        ],
+        "dimensions": [
+          0.45022,
+          0.47404,
+          0.504
+        ]
+      },
+      "MDL_KNEE_R": {
+        "minimum": [
+          0.22489,
+          -0.23702,
+          1.088
+        ],
+        "maximum": [
+          0.67511,
+          0.23702,
+          1.592
+        ],
+        "dimensions": [
+          0.45022,
+          0.47404,
+          0.504
+        ]
+      },
+      "MDL_SHIN_L": {
+        "minimum": [
+          -0.67457,
+          -0.27662,
+          0.50641
+        ],
+        "maximum": [
+          -0.22627,
+          0.27975,
+          1.25496
+        ],
+        "dimensions": [
+          0.4483,
+          0.55637,
+          0.74854
+        ]
+      },
+      "MDL_SHIN_R": {
+        "minimum": [
+          0.22627,
+          -0.27662,
+          0.50641
+        ],
+        "maximum": [
+          0.67457,
+          0.27975,
+          1.25496
+        ],
+        "dimensions": [
+          0.4483,
+          0.55637,
+          0.74854
+        ]
+      }
+    },
+    "after": {
+      "MDL_HIP_L": {
+        "minimum": [
+          -0.68113,
+          -0.25757,
+          1.97414
+        ],
+        "maximum": [
+          -0.14887,
+          0.25757,
+          2.41586
+        ],
+        "dimensions": [
+          0.53225,
+          0.51514,
+          0.44173
+        ]
+      },
+      "MDL_HIP_R": {
+        "minimum": [
+          0.14887,
+          -0.25757,
+          1.97414
+        ],
+        "maximum": [
+          0.68113,
+          0.25757,
+          2.41586
+        ],
+        "dimensions": [
+          0.53225,
+          0.51514,
+          0.44173
+        ]
+      },
+      "MDL_THIGH_L": {
+        "minimum": [
+          -0.72666,
+          -0.28149,
+          1.18082
+        ],
+        "maximum": [
+          -0.15466,
+          0.28149,
+          2.27018
+        ],
+        "dimensions": [
+          0.57201,
+          0.56297,
+          1.08936
+        ]
+      },
+      "MDL_THIGH_R": {
+        "minimum": [
+          0.15466,
+          -0.28149,
+          1.18082
+        ],
+        "maximum": [
+          0.72666,
+          0.28149,
+          2.27018
+        ],
+        "dimensions": [
+          0.57201,
+          0.56297,
+          1.08936
+        ]
+      },
+      "MDL_KNEE_L": {
+        "minimum": [
+          -0.6571,
+          -0.21806,
+          1.17368
+        ],
+        "maximum": [
+          -0.2429,
+          0.21806,
+          1.50632
+        ],
+        "dimensions": [
+          0.4142,
+          0.43612,
+          0.33264
+        ]
+      },
+      "MDL_KNEE_R": {
+        "minimum": [
+          0.2429,
+          -0.21806,
+          1.17368
+        ],
+        "maximum": [
+          0.6571,
+          0.21806,
+          1.50632
+        ],
+        "dimensions": [
+          0.4142,
+          0.43612,
+          0.33264
+        ]
+      },
+      "MDL_SHIN_L": {
+        "minimum": [
+          -0.60407,
+          -0.19301,
+          0.5364
+        ],
+        "maximum": [
+          -0.29922,
+          0.18753,
+          1.28495
+        ],
+        "dimensions": [
+          0.30485,
+          0.38054,
+          0.74854
+        ]
+      },
+      "MDL_SHIN_R": {
+        "minimum": [
+          0.29922,
+          -0.19301,
+          0.5364
+        ],
+        "maximum": [
+          0.60407,
+          0.18753,
+          1.28495
+        ],
+        "dimensions": [
+          0.30485,
+          0.38054,
+          0.74854
+        ]
+      }
+    },
+    "hipParent": "pelvis",
+    "kneeMaterial": "FOX_DARK_TEAL_V2"
+  },
+  "walk": {
+    "rotationPaths": [
+      "pose.bones[\"chest\"].rotation_euler",
+      "pose.bones[\"foot.L\"].rotation_euler",
+      "pose.bones[\"foot.R\"].rotation_euler",
+      "pose.bones[\"forearm.L\"].rotation_euler",
+      "pose.bones[\"forearm.R\"].rotation_euler",
+      "pose.bones[\"head\"].rotation_euler",
+      "pose.bones[\"knee.L\"].rotation_euler",
+      "pose.bones[\"knee.R\"].rotation_euler",
+      "pose.bones[\"pelvis\"].rotation_euler",
+      "pose.bones[\"shin.L\"].rotation_euler",
+      "pose.bones[\"shin.R\"].rotation_euler",
+      "pose.bones[\"spine\"].rotation_euler",
+      "pose.bones[\"thigh.L\"].rotation_euler",
+      "pose.bones[\"thigh.R\"].rotation_euler",
+      "pose.bones[\"upper_arm.L\"].rotation_euler",
+      "pose.bones[\"upper_arm.R\"].rotation_euler"
+    ],
+    "grounding": {
+      "1": 0.005,
+      "5": 0.005,
+      "9": 0.005,
+      "13": 0.005,
+      "17": 0.005,
+      "21": 0.005,
+      "25": 0.005,
+      "29": 0.005,
+      "32": 0.005
+    }
+  },
+  "metrics": {
+    "frames": [
+      1,
+      5,
+      9,
+      13,
+      17,
+      21,
+      25,
+      29,
+      32
+    ],
+    "samples": {
+      "1": {
+        "minimumZ": 0.005,
+        "legs": {
+          "L": {
+            "thighXDegrees": -30.0,
+            "shinXDegrees": -8.0,
+            "footLocalXDegrees": 40.0,
+            "kneeCarrierXDegrees": -4.0,
+            "worldKneeAngleDegrees": 170.668,
+            "flexionDegrees": 9.332
+          },
+          "R": {
+            "thighXDegrees": 30.0,
+            "shinXDegrees": -12.0,
+            "footLocalXDegrees": -16.0,
+            "kneeCarrierXDegrees": -6.0,
+            "worldKneeAngleDegrees": 166.668,
+            "flexionDegrees": 13.332
+          }
+        }
+      },
+      "5": {
+        "minimumZ": 0.005,
+        "legs": {
+          "L": {
+            "thighXDegrees": -20.0,
+            "shinXDegrees": -16.0,
+            "footLocalXDegrees": 36.0,
+            "kneeCarrierXDegrees": -8.0,
+            "worldKneeAngleDegrees": 162.668,
+            "flexionDegrees": 17.332
+          },
+          "R": {
+            "thighXDegrees": 20.0,
+            "shinXDegrees": -20.0,
+            "footLocalXDegrees": -2.0,
+            "kneeCarrierXDegrees": -10.0,
+            "worldKneeAngleDegrees": 158.668,
+            "flexionDegrees": 21.332
+          }
+        }
+      },
+      "9": {
+        "minimumZ": 0.005,
+        "legs": {
+          "L": {
+            "thighXDegrees": -6.0,
+            "shinXDegrees": -32.0,
+            "footLocalXDegrees": 43.0,
+            "kneeCarrierXDegrees": -16.0,
+            "worldKneeAngleDegrees": 146.668,
+            "flexionDegrees": 33.332
+          },
+          "R": {
+            "thighXDegrees": 6.0,
+            "shinXDegrees": -44.0,
+            "footLocalXDegrees": 44.0,
+            "kneeCarrierXDegrees": -22.0,
+            "worldKneeAngleDegrees": 134.668,
+            "flexionDegrees": 45.332
+          }
+        }
+      },
+      "13": {
+        "minimumZ": 0.005,
+        "legs": {
+          "L": {
+            "thighXDegrees": 14.0,
+            "shinXDegrees": -58.0,
+            "footLocalXDegrees": 56.0,
+            "kneeCarrierXDegrees": -29.0,
+            "worldKneeAngleDegrees": 120.668,
+            "flexionDegrees": 59.332
+          },
+          "R": {
+            "thighXDegrees": -14.0,
+            "shinXDegrees": -64.0,
+            "footLocalXDegrees": 92.0,
+            "kneeCarrierXDegrees": -32.0,
+            "worldKneeAngleDegrees": 114.668,
+            "flexionDegrees": 65.332
+          }
+        }
+      },
+      "17": {
+        "minimumZ": 0.005,
+        "legs": {
+          "L": {
+            "thighXDegrees": 30.0,
+            "shinXDegrees": -12.0,
+            "footLocalXDegrees": -16.0,
+            "kneeCarrierXDegrees": -6.0,
+            "worldKneeAngleDegrees": 166.668,
+            "flexionDegrees": 13.332
+          },
+          "R": {
+            "thighXDegrees": -30.0,
+            "shinXDegrees": -8.0,
+            "footLocalXDegrees": 40.0,
+            "kneeCarrierXDegrees": -4.0,
+            "worldKneeAngleDegrees": 170.668,
+            "flexionDegrees": 9.332
+          }
+        }
+      },
+      "21": {
+        "minimumZ": 0.005,
+        "legs": {
+          "L": {
+            "thighXDegrees": 20.0,
+            "shinXDegrees": -20.0,
+            "footLocalXDegrees": -2.0,
+            "kneeCarrierXDegrees": -10.0,
+            "worldKneeAngleDegrees": 158.668,
+            "flexionDegrees": 21.332
+          },
+          "R": {
+            "thighXDegrees": -20.0,
+            "shinXDegrees": -16.0,
+            "footLocalXDegrees": 36.0,
+            "kneeCarrierXDegrees": -8.0,
+            "worldKneeAngleDegrees": 162.668,
+            "flexionDegrees": 17.332
+          }
+        }
+      },
+      "25": {
+        "minimumZ": 0.005,
+        "legs": {
+          "L": {
+            "thighXDegrees": 6.0,
+            "shinXDegrees": -44.0,
+            "footLocalXDegrees": 44.0,
+            "kneeCarrierXDegrees": -22.0,
+            "worldKneeAngleDegrees": 134.668,
+            "flexionDegrees": 45.332
+          },
+          "R": {
+            "thighXDegrees": -6.0,
+            "shinXDegrees": -32.0,
+            "footLocalXDegrees": 43.0,
+            "kneeCarrierXDegrees": -16.0,
+            "worldKneeAngleDegrees": 146.668,
+            "flexionDegrees": 33.332
+          }
+        }
+      },
+      "29": {
+        "minimumZ": 0.005,
+        "legs": {
+          "L": {
+            "thighXDegrees": -14.0,
+            "shinXDegrees": -64.0,
+            "footLocalXDegrees": 92.0,
+            "kneeCarrierXDegrees": -32.0,
+            "worldKneeAngleDegrees": 114.668,
+            "flexionDegrees": 65.332
+          },
+          "R": {
+            "thighXDegrees": 14.0,
+            "shinXDegrees": -58.0,
+            "footLocalXDegrees": 56.0,
+            "kneeCarrierXDegrees": -29.0,
+            "worldKneeAngleDegrees": 120.668,
+            "flexionDegrees": 59.332
+          }
+        }
+      },
+      "32": {
+        "minimumZ": 0.005,
+        "legs": {
+          "L": {
+            "thighXDegrees": -30.0,
+            "shinXDegrees": -8.0,
+            "footLocalXDegrees": 40.0,
+            "kneeCarrierXDegrees": -4.0,
+            "worldKneeAngleDegrees": 170.668,
+            "flexionDegrees": 9.332
+          },
+          "R": {
+            "thighXDegrees": 30.0,
+            "shinXDegrees": -12.0,
+            "footLocalXDegrees": -16.0,
+            "kneeCarrierXDegrees": -6.0,
+            "worldKneeAngleDegrees": 166.668,
+            "flexionDegrees": 13.332
+          }
+        }
+      }
+    },
+    "worldKneeAngleRangeDegrees": {
+      "L": [
+        114.668,
+        170.668
+      ],
+      "R": [
+        114.668,
+        170.668
+      ]
+    },
+    "maximumWorldFlexionDegrees": {
+      "L": 65.332,
+      "R": 65.332
+    },
+    "thighSwingRangeDegrees": {
+      "L": 60,
+      "R": 60
+    },
+    "maximumShinFlexionDegrees": {
+      "L": -64,
+      "R": -64
+    },
+    "pelvisLateralTravel": 0.15,
+    "pelvisRollRangeDegrees": 8.0,
+    "pelvisYawRangeDegrees": 8.0,
+    "hipParents": {
+      "L": {
+        "parent": "FOX_RIG_GUIDE",
+        "parentBone": "pelvis"
+      },
+      "R": {
+        "parent": "FOX_RIG_GUIDE",
+        "parentBone": "pelvis"
+      }
+    },
+    "kneeMaterials": {
+      "L": [
+        "FOX_DARK_TEAL_V2"
+      ],
+      "R": [
+        "FOX_DARK_TEAL_V2"
+      ]
+    }
+  }
+}

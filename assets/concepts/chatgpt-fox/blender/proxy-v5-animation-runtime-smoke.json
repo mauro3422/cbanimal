@@ -1,0 +1,148 @@
+{
+  "stage": "proxy_v5_animation_runtime_smoke_verified",
+  "baseUrl": "http://127.0.0.1:4176",
+  "glb": {
+    "path": "client/public/models/chatgpt-fox-proxy-v5.glb",
+    "bytes": 261100,
+    "animations": [
+      "angry",
+      "idle",
+      "laugh",
+      "sitting",
+      "sleep",
+      "walking",
+      "wave"
+    ]
+  },
+  "gameContract": {
+    "locomotion": [
+      "idle",
+      "walking",
+      "sitting"
+    ],
+    "emotes": [
+      "wave",
+      "laugh",
+      "angry",
+      "sleep"
+    ],
+    "looping": [
+      "idle",
+      "walking"
+    ],
+    "oneShotClamp": [
+      "sitting",
+      "wave",
+      "laugh",
+      "angry",
+      "sleep"
+    ]
+  },
+  "observedActiveSequence": [
+    "idle",
+    "walking",
+    "idle",
+    "wave",
+    "laugh",
+    "angry",
+    "sleep",
+    "idle"
+  ],
+  "locomotionSequenceVerified": [
+    "idle",
+    "walking",
+    "idle"
+  ],
+  "emotesVerified": [
+    "wave",
+    "laugh",
+    "angry",
+    "sleep"
+  ],
+  "fallbackWarnings": [],
+  "console": [
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "timestamp": 1783805848381.218
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "timestamp": 1783805848451.572
+    },
+    {
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.",
+      "timestamp": 1783805848511.679
+    },
+    {
+      "type": "warning",
+      "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.",
+      "timestamp": 1783805848537.253
+    },
+    {
+      "type": "log",
+      "text": "Animaciones encontradas: [\"angry\", \"idle\", \"laugh\", \"sitting\", \"sleep\", \"walking\", \"wave\"]",
+      "timestamp": 1783805848595.709
+    },
+    {
+      "type": "debug",
+      "text": "Animación activa: idle",
+      "timestamp": 1783805848596.757
+    },
+    {
+      "type": "debug",
+      "text": "Animación activa: walking",
+      "timestamp": 1783805849615.964
+    },
+    {
+      "type": "debug",
+      "text": "Animación activa: idle",
+      "timestamp": 1783805851656.367
+    },
+    {
+      "type": "debug",
+      "text": "Animación activa: wave",
+      "timestamp": 1783805852667.169
+    },
+    {
+      "type": "debug",
+      "text": "Animación activa: laugh",
+      "timestamp": 1783805854692.774
+    },
+    {
+      "type": "debug",
+      "text": "Animación activa: angry",
+      "timestamp": 1783805856723.707
+    },
+    {
+      "type": "debug",
+      "text": "Animación activa: sleep",
+      "timestamp": 1783805858739.026
+    },
+    {
+      "type": "debug",
+      "text": "Animación activa: idle",
+      "timestamp": 1783805861750.116
+    }
+  ],
+  "chrome": {
+    "command": [
+      "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "--headless=new",
+      "--hide-scrollbars",
+      "--use-angle=swiftshader",
+      "--enable-unsafe-swiftshader",
+      "--ignore-gpu-blocklist",
+      "--remote-allow-origins=*",
+      "--remote-debugging-port=9223",
+      "--user-data-dir=C:\\Users\\mauro\\AppData\\Local\\Temp\\cbanimal-animation-smoke-kdw365ys",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--user-data-dir=<temporary>",
+      "http://127.0.0.1:4176/?animationSmoke=1783805847704075300"
+    ],
+    "pid": 29460
+  }
+}

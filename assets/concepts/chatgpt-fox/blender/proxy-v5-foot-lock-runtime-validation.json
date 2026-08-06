@@ -1,0 +1,47 @@
+{
+  "stage": "proxy_v5_fullbody_walk_and_world_foot_lock_validated",
+  "model": "client/public/models/chatgpt-fox-proxy-v5.glb",
+  "calibration": {
+    "exportedReferenceSpeed": 1.385,
+    "gameplaySpeed": 2.2,
+    "walkingTimeScale": 1.588447653429603,
+    "effectiveCycleDuration": 0.3410038003867322,
+    "turnResponseTime": 0.16
+  },
+  "evidence": {
+    "withoutFootLock": {
+      "useFootLock": false,
+      "walkingClipDuration": 0.5416666865348816,
+      "walkingTimeScale": 1.588447653429603,
+      "effectiveCycleDuration": 0.3410038003867322,
+      "gameplaySpeed": 2.2,
+      "totalDistance": 6.636666666666679,
+      "supportSwitches": 18,
+      "maximumSupportDrift": 0.21244709310969992,
+      "meanSupportDrift": 0.04639496883018816,
+      "maximumCorrection": 0,
+      "finalPosition": [
+        0.5018865159472494,
+        0,
+        0.17811056024395647
+      ]
+    },
+    "withFootLock": {
+      "useFootLock": true,
+      "walkingClipDuration": 0.5416666865348816,
+      "walkingTimeScale": 1.588447653429603,
+      "effectiveCycleDuration": 0.3410038003867322,
+      "gameplaySpeed": 2.2,
+      "totalDistance": 6.6366666666666765,
+      "supportSwitches": 18,
+      "maximumSupportDrift": 4.440892098500626e-16,
+      "meanSupportDrift": 4.0393488988902244e-17,
+      "maximumCorrection": 0.04404328007392648,
+      "finalPosition": [
+        0.8024087399163967,
+        0,
+        0.1301723453157569
+      ]
+    }
+  }
+}

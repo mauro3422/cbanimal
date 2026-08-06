@@ -1,28 +1,13 @@
 {
-  "stage": "hybrid_proxy_v5_integrated_and_verified",
+  "stage": "hybrid_proxy_v5_fullbody_walk_footlock_verified",
   "character": "chatgpt-fox",
-  "visualBasis": {
-    "description": "User-provided front, profile, and back screenshots reviewed in the active ChatGPT session.",
-    "preserve": [
-      "face and expression",
-      "teal/cyan/white palette",
-      "ears, hands, and paws",
-      "approved segmented tail curve and white tip"
-    ],
-    "refine": [
-      "torso-to-pelvis continuity",
-      "neck embedding",
-      "tail-root transition",
-      "shoulder, hip, knee, and ankle overlap"
-    ]
-  },
   "source": {
     "canonicalBlend": {
       "path": "assets/concepts/chatgpt-fox/blender/chatgpt_fox_proxy_v5.blend",
-      "bytes": 182131,
-      "sha256": "d7f60617a84e5bc8a5a1d1be122a4f92856c9f502a6ca3c41478d322e7a202c2"
+      "bytes": 205762,
+      "sha256": "2c1a348874341772cd13eb91a515644e9f2336e9ab1eefe212bff726249fe950"
     },
-    "retainedSources": [
+    "retainedReferences": [
       {
         "path": "assets/concepts/chatgpt-fox/character-brief.json",
         "bytes": 1157,
@@ -88,56 +73,14 @@
         "bytes": 3947,
         "sha256": "1d19e9e1427c12b43a6f7fbc236cdd82a63414b5c0df50c36e45a66345019f70"
       }
-    ],
-    "cleanupPolicy": "Only canonical v5 runtime/checkpoint assets and approved source/reference inputs are retained."
+    ]
   },
   "construction": {
-    "mode": "hybrid articulated proxy",
+    "mode": "hybrid articulated gameplay proxy",
     "rig": "FOX_RIG_GUIDE",
-    "bones": 24,
-    "rigidMeshes": 45,
-    "deformingMeshes": {
-      "MDL_V5_BODY": [
-        "pelvis",
-        "spine",
-        "chest",
-        "neck"
-      ],
-      "MDL_V5_TAIL_ROOT": [
-        "pelvis",
-        "tail.01"
-      ]
-    },
-    "legacyArchivePurged": true,
-    "geometry": {
-      "objects": 47,
-      "mesh_objects": 47,
-      "vertices": 994,
-      "edges": 2306,
-      "polygons": 1404,
-      "triangles": 1780
-    },
-    "materials": [
-      "FOX_CYAN_V2",
-      "FOX_DARK_TEAL_V2",
-      "FOX_TEAL_V2",
-      "FOX_WHITE_V2"
-    ],
-    "warnings": []
-  },
-  "animations": {
-    "names": [
-      "idle",
-      "walking",
-      "sitting",
-      "wave"
-    ],
-    "validation": {
-      "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-animation-validation.json",
-      "bytes": 38558,
-      "sha256": "51d5337c0a12f7aaf98717cc385abd8ed92b762acd9f37cc6a22ef973f444040"
-    },
-    "minimumValidatedZ": -0.0215,
+    "bones": 26,
+    "meshes": 47,
+    "materials": 4,
     "deformingObjects": {
       "MDL_V5_BODY": {
         "vertices": 178,
@@ -157,24 +100,707 @@
         ],
         "modifier": "FOX_V5_ARMATURE"
       }
+    },
+    "meshBindings": {
+      "MDL_ANKLE_L": "bone:shin.L",
+      "MDL_ANKLE_R": "bone:shin.R",
+      "MDL_CHEEK_L": "bone:head",
+      "MDL_CHEEK_R": "bone:head",
+      "MDL_CHEST_PATCH": "bone:chest",
+      "MDL_EAR_CAP_L": "bone:ear.L",
+      "MDL_EAR_CAP_R": "bone:ear.R",
+      "MDL_EAR_L": "bone:ear.L",
+      "MDL_EAR_R": "bone:ear.R",
+      "MDL_EAR_TIP_L": "bone:ear.L",
+      "MDL_EAR_TIP_R": "bone:ear.R",
+      "MDL_ELBOW_L": "bone:forearm.L",
+      "MDL_ELBOW_R": "bone:forearm.R",
+      "MDL_EYE_L": "bone:head",
+      "MDL_EYE_R": "bone:head",
+      "MDL_FOOT_L": "bone:foot.L",
+      "MDL_FOOT_R": "bone:foot.R",
+      "MDL_FOREARM_L": "bone:forearm.L",
+      "MDL_FOREARM_R": "bone:forearm.R",
+      "MDL_HAND_L": "bone:hand.L",
+      "MDL_HAND_R": "bone:hand.R",
+      "MDL_HEAD": "bone:head",
+      "MDL_HIP_L": "bone:pelvis",
+      "MDL_HIP_R": "bone:pelvis",
+      "MDL_INNER_EAR_L": "bone:ear.L",
+      "MDL_INNER_EAR_R": "bone:ear.R",
+      "MDL_KNEE_L": "bone:knee.L",
+      "MDL_KNEE_R": "bone:knee.R",
+      "MDL_MUZZLE": "bone:head",
+      "MDL_NOSE": "bone:head",
+      "MDL_PUPIL_L": "bone:head",
+      "MDL_PUPIL_R": "bone:head",
+      "MDL_SHIN_L": "bone:shin.L",
+      "MDL_SHIN_R": "bone:shin.R",
+      "MDL_SHOULDER_L": "bone:upper_arm.L",
+      "MDL_SHOULDER_R": "bone:upper_arm.R",
+      "MDL_TAIL_01": "bone:tail.01",
+      "MDL_TAIL_02": "bone:tail.02",
+      "MDL_TAIL_03": "bone:tail.03",
+      "MDL_TAIL_04": "bone:tail.04",
+      "MDL_TAIL_TIP": "bone:tail.04",
+      "MDL_THIGH_L": "bone:thigh.L",
+      "MDL_THIGH_R": "bone:thigh.R",
+      "MDL_UPPER_ARM_L": "bone:upper_arm.L",
+      "MDL_UPPER_ARM_R": "bone:upper_arm.R",
+      "MDL_V5_BODY": "armature_modifier",
+      "MDL_V5_TAIL_ROOT": "armature_modifier"
     }
+  },
+  "locomotion": {
+    "fullBodyAnalyticalWalk": {
+      "record": {
+        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-ik-walk-validation.json",
+        "bytes": 50832,
+        "sha256": "2407e8679723aafe0ab713f84c8434b8895bce8ff977ec6c60f08d91b2a4ec45"
+      },
+      "frameRange": [
+        1,
+        13
+      ],
+      "fps": 24.0,
+      "authoredDurationSeconds": 0.5,
+      "strideHalfBlender": 0.65,
+      "stanceFraction": 0.5,
+      "maximumExtensionRatio": 0.97,
+      "pelvisLateralTravel": 0.14,
+      "pelvisVerticalTravel": 0.092971,
+      "poseFrames": {
+        "contactLeft": 1,
+        "compressionLeft": 2,
+        "passingLeft": 4,
+        "elevationLeft": 6,
+        "contactRight": 7,
+        "compressionRight": 8,
+        "passingRight": 10,
+        "elevationRight": 12
+      },
+      "legs": {
+        "L": {
+          "kneeFlexionRangeDegrees": [
+            29.596803,
+            99.389165
+          ],
+          "supportFootMinimumZRange": [
+            0.005,
+            0.005
+          ],
+          "swingFootClearanceRange": [
+            0.101675,
+            0.52759
+          ],
+          "supportFootSpeedRuntimeRange": [
+            1.638597,
+            1.774787
+          ],
+          "supportFootSpeedRuntimeMean": 1.721652,
+          "referenceSpeedErrorPercent": 1.994,
+          "upperLengthRange": [
+            0.84005947,
+            0.8400596
+          ],
+          "lowerLengthRange": [
+            0.86029068,
+            0.86029086
+          ],
+          "thighAngleRangeDegrees": [
+            -8.311624,
+            57.306219
+          ],
+          "maximumExtensionRatio": 0.966835
+        },
+        "R": {
+          "kneeFlexionRangeDegrees": [
+            29.596803,
+            99.389158
+          ],
+          "supportFootMinimumZRange": [
+            0.005,
+            0.005
+          ],
+          "swingFootClearanceRange": [
+            0.101675,
+            0.522851
+          ],
+          "supportFootSpeedRuntimeRange": [
+            1.448026,
+            2.016699
+          ],
+          "supportFootSpeedRuntimeMean": 1.654748,
+          "referenceSpeedErrorPercent": 1.97,
+          "upperLengthRange": [
+            0.84005944,
+            0.8400596
+          ],
+          "lowerLengthRange": [
+            0.86029064,
+            0.86029085
+          ],
+          "thighAngleRangeDegrees": [
+            -8.311624,
+            57.306219
+          ],
+          "maximumExtensionRatio": 0.966835
+        }
+      }
+    },
+    "worldFootLockAndTurning": {
+      "record": {
+        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-foot-lock-runtime-validation.json",
+        "bytes": 1442,
+        "sha256": "b9c3bd5fa37ed46866961c7d7e9b160d5374729f551b7e90067cb232d55e6f14"
+      },
+      "calibration": {
+        "exportedReferenceSpeed": 1.385,
+        "gameplaySpeed": 2.2,
+        "walkingTimeScale": 1.588447653429603,
+        "effectiveCycleDuration": 0.3410038003867322,
+        "turnResponseTime": 0.16
+      },
+      "controlMaximumDrift": 0.21244709310969992,
+      "lockedMaximumDrift": 4.440892098500626e-16,
+      "maximumCorrectionPerFrame": 0.04404328007392648
+    },
+    "gameplayCamera": {
+      "record": {
+        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-smoke.json",
+        "bytes": 8522,
+        "sha256": "2eb54c76427da7042e300204e2a5a4942f205b6debabb4818135c32fe5accac3"
+      },
+      "contactSheet": {
+        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/walk-gameplay-camera-contact.jpg",
+        "bytes": 52460,
+        "sha256": "ed8935dc2c01ad103596794d02bc28b5548dbdb4d3b56a34e2a5b3b9e8695ce9"
+      },
+      "frames": [
+        {
+          "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-01.png",
+          "bytes": 50600,
+          "sha256": "9c3a6400b6798e0cb67627cc2b5d32f0443a6371b0e9f1425ee59458fbab84c2"
+        },
+        {
+          "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-02.png",
+          "bytes": 50650,
+          "sha256": "221ef41f24b0c9759ea01ccf3d6bade9feb564435a8e0a2fdc7b375b3a1fcf38"
+        },
+        {
+          "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-03.png",
+          "bytes": 50883,
+          "sha256": "d479feebdfa54ffda0bb9ed17554594d05e1df496cb337354ff9f0706a7c2c58"
+        },
+        {
+          "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-04.png",
+          "bytes": 50690,
+          "sha256": "254790ed773373398629d39ad6cee742c0ab85d3c551b2d628b88cc1b64447ad"
+        },
+        {
+          "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-05.png",
+          "bytes": 50942,
+          "sha256": "36ffd9c7a353900fd6126bc501ae4d7a4dc7e70958114aeb5506e5d34cda0e50"
+        },
+        {
+          "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-06.png",
+          "bytes": 50618,
+          "sha256": "f67bfb7dff59c4eee6927cdbc0fac3e75f551a25947064efa8aa5470b2a6e6bf"
+        },
+        {
+          "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-07.png",
+          "bytes": 50712,
+          "sha256": "61009e0e4ad3214ef8370b47098f0aa43f0de02363fe54b28ceb2c1da564d1bc"
+        },
+        {
+          "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-walk-visual-frames/walk-08.png",
+          "bytes": 50912,
+          "sha256": "04d60d3ada0717a5f00a727809d7903451febf433837e47a3b1e4a6fe46a5fd2"
+        }
+      ],
+      "visualAnalysis": {
+        "frameCount": 8,
+        "foregroundPixels": [
+          9692,
+          6847,
+          6862,
+          6831,
+          6855,
+          6846,
+          6847,
+          6864
+        ],
+        "boundingBoxes": [
+          [
+            613,
+            246,
+            812,
+            587
+          ],
+          [
+            612,
+            245,
+            777,
+            587
+          ],
+          [
+            615,
+            244,
+            777,
+            587
+          ],
+          [
+            612,
+            245,
+            777,
+            587
+          ],
+          [
+            614,
+            246,
+            777,
+            587
+          ],
+          [
+            613,
+            245,
+            777,
+            587
+          ],
+          [
+            612,
+            245,
+            777,
+            587
+          ],
+          [
+            615,
+            244,
+            777,
+            587
+          ]
+        ],
+        "boundingBoxWidthRange": [
+          162,
+          199
+        ],
+        "boundingBoxHeightRange": [
+          341,
+          343
+        ],
+        "alignedUnionBounds": [
+          60,
+          8,
+          259,
+          351
+        ],
+        "detectedVerticalGapPixels": 187,
+        "analysisBands": {
+          "upperLeg": [
+            290,
+            323
+          ],
+          "lowerLeg": [
+            323,
+            351
+          ]
+        },
+        "comparisonPairs": [
+          {
+            "frames": [
+              1,
+              2
+            ],
+            "upperLegXorPixels": 1247,
+            "lowerLegXorPixels": 2137,
+            "totalXorPixels": 6991,
+            "upperToLowerRatio": 0.5835
+          },
+          {
+            "frames": [
+              1,
+              3
+            ],
+            "upperLegXorPixels": 1247,
+            "lowerLegXorPixels": 2137,
+            "totalXorPixels": 6886,
+            "upperToLowerRatio": 0.5835
+          },
+          {
+            "frames": [
+              1,
+              4
+            ],
+            "upperLegXorPixels": 1247,
+            "lowerLegXorPixels": 2137,
+            "totalXorPixels": 7021,
+            "upperToLowerRatio": 0.5835
+          },
+          {
+            "frames": [
+              1,
+              5
+            ],
+            "upperLegXorPixels": 1246,
+            "lowerLegXorPixels": 2022,
+            "totalXorPixels": 6811,
+            "upperToLowerRatio": 0.6162
+          },
+          {
+            "frames": [
+              1,
+              6
+            ],
+            "upperLegXorPixels": 1247,
+            "lowerLegXorPixels": 2137,
+            "totalXorPixels": 6992,
+            "upperToLowerRatio": 0.5835
+          },
+          {
+            "frames": [
+              1,
+              7
+            ],
+            "upperLegXorPixels": 1247,
+            "lowerLegXorPixels": 2137,
+            "totalXorPixels": 6987,
+            "upperToLowerRatio": 0.5835
+          },
+          {
+            "frames": [
+              1,
+              8
+            ],
+            "upperLegXorPixels": 1247,
+            "lowerLegXorPixels": 2137,
+            "totalXorPixels": 6890,
+            "upperToLowerRatio": 0.5835
+          },
+          {
+            "frames": [
+              2,
+              3
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 56,
+            "totalXorPixels": 715,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              2,
+              4
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 0,
+            "totalXorPixels": 116,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              2,
+              5
+            ],
+            "upperLegXorPixels": 1,
+            "lowerLegXorPixels": 115,
+            "totalXorPixels": 852,
+            "upperToLowerRatio": 0.0087
+          },
+          {
+            "frames": [
+              2,
+              6
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 0,
+            "totalXorPixels": 155,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              2,
+              7
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 0,
+            "totalXorPixels": 66,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              2,
+              8
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 56,
+            "totalXorPixels": 719,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              3,
+              4
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 56,
+            "totalXorPixels": 771,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              3,
+              5
+            ],
+            "upperLegXorPixels": 1,
+            "lowerLegXorPixels": 115,
+            "totalXorPixels": 391,
+            "upperToLowerRatio": 0.0087
+          },
+          {
+            "frames": [
+              3,
+              6
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 56,
+            "totalXorPixels": 618,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              3,
+              7
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 56,
+            "totalXorPixels": 675,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              3,
+              8
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 0,
+            "totalXorPixels": 4,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              4,
+              5
+            ],
+            "upperLegXorPixels": 1,
+            "lowerLegXorPixels": 115,
+            "totalXorPixels": 914,
+            "upperToLowerRatio": 0.0087
+          },
+          {
+            "frames": [
+              4,
+              6
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 0,
+            "totalXorPixels": 239,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              4,
+              7
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 0,
+            "totalXorPixels": 170,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              4,
+              8
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 56,
+            "totalXorPixels": 775,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              5,
+              6
+            ],
+            "upperLegXorPixels": 1,
+            "lowerLegXorPixels": 115,
+            "totalXorPixels": 759,
+            "upperToLowerRatio": 0.0087
+          },
+          {
+            "frames": [
+              5,
+              7
+            ],
+            "upperLegXorPixels": 1,
+            "lowerLegXorPixels": 115,
+            "totalXorPixels": 810,
+            "upperToLowerRatio": 0.0087
+          },
+          {
+            "frames": [
+              5,
+              8
+            ],
+            "upperLegXorPixels": 1,
+            "lowerLegXorPixels": 115,
+            "totalXorPixels": 387,
+            "upperToLowerRatio": 0.0087
+          },
+          {
+            "frames": [
+              6,
+              7
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 0,
+            "totalXorPixels": 119,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              6,
+              8
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 56,
+            "totalXorPixels": 622,
+            "upperToLowerRatio": 0.0
+          },
+          {
+            "frames": [
+              7,
+              8
+            ],
+            "upperLegXorPixels": 0,
+            "lowerLegXorPixels": 56,
+            "totalXorPixels": 679,
+            "upperToLowerRatio": 0.0
+          }
+        ],
+        "averageUpperToLowerRatio": 0.5882,
+        "readableUpperLegPairs": 7,
+        "maximumUpperLegXorPixels": 1247
+      }
+    }
+  },
+  "animations": {
+    "names": [
+      "angry",
+      "idle",
+      "laugh",
+      "sitting",
+      "sleep",
+      "walking",
+      "wave"
+    ],
+    "frameRanges": {
+      "idle": [
+        1.0,
+        40.0
+      ],
+      "walking": [
+        1.0,
+        13.0
+      ],
+      "sitting": [
+        1.0,
+        24.0
+      ],
+      "wave": [
+        1.0,
+        48.0
+      ],
+      "laugh": [
+        1.0,
+        48.0
+      ],
+      "angry": [
+        1.0,
+        48.0
+      ],
+      "sleep": [
+        1.0,
+        72.0
+      ]
+    },
+    "runtimePolicy": {
+      "loop": [
+        "idle",
+        "walking"
+      ],
+      "once": [
+        "sitting",
+        "wave",
+        "laugh",
+        "angry",
+        "sleep"
+      ]
+    },
+    "validation": {
+      "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-animation-validation.json",
+      "bytes": 123820,
+      "sha256": "10bea89088ea8f0d35b259eb627b4ce08c2ea1ed3a04fabaa2bfc93c56047db3"
+    },
+    "browserRuntime": {
+      "record": {
+        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-animation-runtime-smoke.json",
+        "bytes": 3442,
+        "sha256": "a64924be10e142e0eabd01145ee39f929c1422bb60f39d02c08fd67d6cbe3e12"
+      },
+      "observedActiveSequence": [
+        "idle",
+        "walking",
+        "idle",
+        "wave",
+        "laugh",
+        "angry",
+        "sleep",
+        "idle"
+      ],
+      "locomotionSequenceVerified": [
+        "idle",
+        "walking",
+        "idle"
+      ],
+      "emotesVerified": [
+        "wave",
+        "laugh",
+        "angry",
+        "sleep"
+      ],
+      "fallbackWarnings": []
+    },
+    "minimumValidatedZ": 0.005
   },
   "export": {
     "file": {
       "path": "client/public/models/chatgpt-fox-proxy-v5.glb",
-      "bytes": 189924,
-      "sha256": "2e381baf55bff5afd61f3a612ea711d9dc027fac19cc539500f286fa2e6486b3"
+      "bytes": 261100,
+      "sha256": "055df4649a87bb5e45cc35a272179f2b2a38374006546c9da8d760f9ea99e83b"
     },
     "structure": {
       "version": 2,
-      "bytes": 189924,
-      "nodes": 72,
+      "bytes": 261100,
+      "nodes": 74,
       "meshes": 47,
       "materials": 4,
       "skins": 1,
       "animations": [
+        "angry",
         "idle",
+        "laugh",
         "sitting",
+        "sleep",
         "walking",
         "wave"
       ],
@@ -182,14 +808,40 @@
     }
   },
   "integration": {
-    "config": {
-      "path": "client/src/game/config/localPlayerConfig.ts",
-      "bytes": 647,
-      "sha256": "9f604627b5a406003e674d5494998586b26ce6139a34bd39b4f9e36cb00753bb"
-    },
-    "defaultUrl": "/models/chatgpt-fox-proxy-v5.glb",
+    "defaultUrl": "/models/chatgpt-fox-proxy-v5.glb?rev=fullbody-footlock-3",
     "scale": 0.32,
-    "environmentOverridePreserved": true,
+    "movementSpeed": 2.2,
+    "exportedWalkReferenceSpeed": 1.385,
+    "turnResponseTimeSeconds": 0.16,
+    "footLock": "world-space XZ support-foot anchoring with bounded correction",
+    "phasePolicy": "walking action phase is preserved during direction changes",
+    "files": {
+      "config": {
+        "path": "client/src/game/config/localPlayerConfig.ts",
+        "bytes": 693,
+        "sha256": "5ad7fa70a157fe6ae261c1e4db1685e083348937775660de29150de093680840"
+      },
+      "movementState": {
+        "path": "client/src/game/entities/MovementState.ts",
+        "bytes": 194,
+        "sha256": "4de5a9743cc26539af5d343cc76a76c11f1bedeec73cc0923ed5d0e8089dedc6"
+      },
+      "characterModel": {
+        "path": "client/src/game/entities/CharacterModel.ts",
+        "bytes": 7505,
+        "sha256": "745509182181e7f6bdd4d2175e69dcb6d2f045f0c08af4f9a1a97acfdfef2ec8"
+      },
+      "player": {
+        "path": "client/src/game/entities/Player.ts",
+        "bytes": 12127,
+        "sha256": "08cf844cbb3ce69981fce4965f54302840df30abe45abcfce59ba80e6c00659c"
+      },
+      "emoteMenu": {
+        "path": "client/src/ui/components/EmoteMenu.ts",
+        "bytes": 2387,
+        "sha256": "32d2cf37f183d2d96c3ac5d92416a7ad9dbe0ee78d20747d2efcc77383fee9dd"
+      }
+    },
     "build": {
       "command": "npm run build",
       "status": "passed",
@@ -198,18 +850,18 @@
     "browserSmoke": {
       "record": {
         "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-game-smoke.json",
-        "bytes": 1669,
-        "sha256": "0de62df71788ce5b71e2d5e2cd9d396e9e692b9805a7cc9a5d77c956d73ac86d"
+        "bytes": 1693,
+        "sha256": "c1a13e7dc2c7ab3290e738ce24dce10d0aa626ece0322a7ab4ee6e91882fc343"
       },
       "screenshot": {
         "path": "assets/concepts/chatgpt-fox/blender/game_smoke_proxy_v5.png",
-        "bytes": 51583,
-        "sha256": "103311be345db347e9ee0cee0d4fdd95397de251ade2177168bd6dde156890b4"
+        "bytes": 51434,
+        "sha256": "ec10ebe86e026a9383d322d926fa0e5791a719bdf681feb1a566ee2f6066c3f3"
       },
       "pageStatus": 200,
       "modelStatus": 200,
       "contentType": "model/gltf-binary",
-      "servedBytes": 189924,
+      "servedBytes": 261100,
       "pixelEvidence": {
         "width": 1280,
         "height": 720,
@@ -219,89 +871,73 @@
           896,
           662
         ],
-        "tealPixels": 23491,
-        "cyanPixels": 1474,
+        "tealPixels": 23415,
+        "cyanPixels": 1373,
         "placeholderPinkPixels": 0
       }
     }
   },
-  "review": {
-    "neutralSourceManifest": {
-      "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/neutral-review.json",
-      "bytes": 42587,
-      "sha256": "b99b0b25f35db9b4e4be7165675df3927e82a60ccf7604cc46b5d94532b0d3ab"
-    },
-    "sheets": [
-      {
-        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/neutral-multiview.jpg",
-        "bytes": 44155,
-        "sha256": "532b767a7a7eca3fac3e095e9034f1b09746c52f3e049fd3af87c4412ec9f190"
-      },
-      {
-        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/walk-frame-1-contact.jpg",
-        "bytes": 20734,
-        "sha256": "48c44a768804d18271f4a09da41582307069336f83657ce5797e63ff481ad9d1"
-      },
-      {
-        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/walk-frame-17-contact.jpg",
-        "bytes": 20284,
-        "sha256": "2629b7e4cccbde127709c2d6784099c56bb0e08a289285be333b719ecafc5b46"
-      },
-      {
-        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/sit-frame-12-contact.jpg",
-        "bytes": 26018,
-        "sha256": "5908597467d6e7759897dfd42dcd547563bd8b1ec73bc15c7b2488024de24deb"
-      },
-      {
-        "path": "assets/concepts/chatgpt-fox/blender/proxy-v5-review/wave-frame-20-contact.jpg",
-        "bytes": 20259,
-        "sha256": "91c8333c94713b947e8c44f13597906be40143e3d913426a48ef49edd2ef43cf"
-      }
-    ]
-  },
   "artifacts": {
-    "blend": {
-      "path": "assets/concepts/chatgpt-fox/blender/chatgpt_fox_proxy_v5.blend",
-      "bytes": 182131,
-      "sha256": "d7f60617a84e5bc8a5a1d1be122a4f92856c9f502a6ca3c41478d322e7a202c2"
-    },
     "scripts": [
       {
+        "path": "assets/concepts/chatgpt-fox/blender/scripts/refine_proxy_v5_ik_walk.py",
+        "bytes": 22772,
+        "sha256": "7bc433abba3d0958ec222fdfdbdac2c925adec6221f5a2b80c7446e1c6a7accb"
+      },
+      {
         "path": "assets/concepts/chatgpt-fox/blender/scripts/validate_proxy_v5_animations.py",
-        "bytes": 11135,
-        "sha256": "a99d720adf16884dd2003a4ce74af7086b3dd07efd7bcda80e138ac2f23af873"
+        "bytes": 22518,
+        "sha256": "4e51e382012b806e73f9cb2db74238f13cfabda08f56180ff116a1669ff501cb"
       },
       {
         "path": "assets/concepts/chatgpt-fox/blender/scripts/export_proxy_v5_glb.py",
-        "bytes": 5914,
-        "sha256": "f028500690036165f4e474727a55a1519b78da7afbd803f3c396ec2abc64384f"
+        "bytes": 6101,
+        "sha256": "e6e76ba8f660300bf6d8be7bff5f221029042ebb1d393dfc8c6873261b0e8e40"
       },
       {
         "path": "assets/concepts/chatgpt-fox/blender/scripts/record_proxy_v5_game_smoke.py",
-        "bytes": 6466,
-        "sha256": "a0c00ba46e5171560254a8544636e8fb73812a700250e71c2e4426d0920955ac"
+        "bytes": 6670,
+        "sha256": "da28b6b32b3aacbad2ee0f3a9120867d0cdf213e6fff43a46315ac0310e7a659"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/scripts/record_proxy_v5_animation_runtime_smoke.py",
+        "bytes": 13009,
+        "sha256": "cd3a741ccb0e044f7eabfb59817ee735274824a7530296d04514749c9dbadb8f"
+      },
+      {
+        "path": "assets/concepts/chatgpt-fox/blender/scripts/record_proxy_v5_walk_visual_smoke.py",
+        "bytes": 14819,
+        "sha256": "c9a09b1769d354cd7846041309f7e742a9a2725505e5e5cf7d1e0a9ea66052cb"
       },
       {
         "path": "assets/concepts/chatgpt-fox/blender/scripts/finalize_proxy_v5_checkpoint.py",
-        "bytes": 11104,
-        "sha256": "dc96fe8c1852e9a5ccd61d4b5917f4e8fb1d6d52a27c29ebbe4fe6fad21ff5bf"
+        "bytes": 19660,
+        "sha256": "85ead3166230411305ab228370c914c04a75f6635877644fe13081124e8f9e09"
       },
       {
         "path": "assets/concepts/chatgpt-fox/blender/scripts/verify_proxy_v5_checkpoint.py",
-        "bytes": 7434,
-        "sha256": "419abe2cb94389d2005fcbb9ca32c534bae2380180e2f278ec40d50fafccb5b7"
+        "bytes": 14709,
+        "sha256": "5ebbb4566d4345be326110d4f69c62ea3ec88ca6212c11ac0a87be9b03eebc11"
+      },
+      {
+        "path": "client/scripts/calibrate-proxy-v5-walk-speed.mjs",
+        "bytes": 3062,
+        "sha256": "a9b81a5540cbca9207cb5fc09df2bb9d618ccf6e0e7928bb0cab654a3846ab7a"
+      },
+      {
+        "path": "client/scripts/verify-proxy-v5-foot-lock.mjs",
+        "bytes": 5974,
+        "sha256": "13f5cad9de27ccab8c4f70f2e815bcdd35c452cd046a337fd161b96e4130bee2"
       }
     ]
   },
   "limitations": [
-    "This is a polished hybrid gameplay proxy, not the final unified 8k-12k production mesh.",
-    "Face, limbs, paws, ears, and most tail segments remain separate rigid low-poly meshes.",
-    "The four animation clips are validated gameplay clips rather than final polished animation.",
-    "UVs, a 1024 texture set, production retopology, and close-up deformation polish remain future milestones."
+    "This remains a hybrid low-poly gameplay proxy rather than a final unified production mesh.",
+    "Most limb and facial components remain separate rigid meshes, so close-up deformation is limited.",
+    "The foot lock is runtime root compensation rather than a fully procedural per-leg IK rig in Three.js."
   ],
   "nextMilestone": [
-    "Review v5 at gameplay camera distance and keep it as the creature production-direction baseline.",
-    "Build a fully unified production body and tail only when close-up presentation becomes necessary.",
-    "Create UVs, a 1024 texture, final weights, and refined animation controls."
+    "Review the corrected gait in normal gameplay and tune stride character only from new visual evidence.",
+    "Move to unified production topology, final weights, UVs, and textures when close-up presentation requires it."
   ]
 }
