@@ -12,10 +12,11 @@ The active application lives in `client/`.
 
 Before substantial work:
 
-1. Read `.bridge/PROJECT_CONTEXT.md`.
-2. Read `.bridge/PROJECT_STATE.md` for current progress and the next milestone.
-3. Load the relevant guide under `.bridge/workflow-guides/` when the task matches one.
-4. Inspect the current Git status before editing.
+1. Run `project_context_load` for this repository.
+2. Treat the returned modular project core as the default context. Do not read all of `.bridge/PROJECT_CONTEXT.md` or `.bridge/PROJECT_STATE.md` unless an audit/recovery task explicitly needs the full documents.
+3. Build canonical structured MSSR intent and call `skill_bootstrap` with the same `projectRoot` and active stage so matching project context/state modules and procedural skills are selected together.
+4. Load the relevant guide under `.bridge/workflow-guides/` when the task matches one.
+5. Inspect the current Git status before editing.
 
 ## Engineering rules
 

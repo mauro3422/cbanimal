@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "core": [
+    {
+      "id": "project-foundation",
+      "kind": "context",
+      "description": "Product direction, repository layout and durable architecture needed to orient substantial work.",
+      "source": {
+        "path": ".bridge/PROJECT_CONTEXT.md",
+        "sections": [
+          "## Product direction",
+          "## Repository layout",
+          "## Current architectural decisions"
+        ]
+      }
+    },
+    {
+      "id": "application-baseline",
+      "kind": "state",
+      "description": "Small current application baseline needed to understand the active prototype before routing deeper work.",
+      "source": {
+        "path": ".bridge/PROJECT_STATE.md",
+        "sections": [
+          "## Stable application baseline"
+        ]
+      }
+    }
+  ],
+  "modules": [
+    {
+      "id": "character-production-contract",
+      "kind": "context",
+      "description": "Character concept, Blender production and tool-transfer contract for visual asset work.",
+      "source": {
+        "path": ".bridge/PROJECT_CONTEXT.md",
+        "sections": [
+          "## Character production policy",
+          "## Tool relationship"
+        ]
+      },
+      "stages": ["start", "implement", "verify", "resume"],
+      "domains": ["blender", "coding"],
+      "artifacts": ["asset", "model-3d"],
+      "priority": 30
+    },
+    {
+      "id": "application-validation",
+      "kind": "context",
+      "description": "Stable build and dev-server commands for code/runtime verification.",
+      "source": {
+        "path": ".bridge/PROJECT_CONTEXT.md",
+        "sections": [
+          "## Stable validation commands"
+        ]
+      },
+      "stages": ["implement", "verify", "resume"],
+      "domains": ["coding"],
+      "actions": ["test", "verify", "debug"],
+      "artifacts": ["code", "game", "project"],
+      "priority": 35
+    },
+    {
+      "id": "character-tooling-state",
+      "kind": "state",
+      "description": "Current character tooling and approved source/reference locations.",
+      "source": {
+        "path": ".bridge/PROJECT_STATE.md",
+        "sections": [
+          "## Tooling",
+          "## Approved character sources"
+        ]
+      },
+      "stages": ["start", "implement", "verify", "resume"],
+      "domains": ["blender"],
+      "artifacts": ["asset", "model-3d"],
+      "priority": 30
+    },
+    {
+      "id": "fox-v5-summary",
+      "kind": "state",
+      "description": "Canonical fox v5 identity plus current limitations and next milestone.",
+      "source": {
+        "path": ".bridge/PROJECT_STATE.md",
+        "sections": [
+          "## Canonical fox v5",
+          "## Limitations and next milestone"
+        ]
+      },
+      "stages": ["start", "implement", "verify", "resume"],
+      "domains": ["blender", "coding"],
+      "artifacts": ["asset", "model-3d", "animation", "game"],
+      "priority": 45
+    },
+    {
+      "id": "fox-v5-animation-evidence",
+      "kind": "state",
+      "description": "Detailed walk-chain, animation and gameplay-camera evidence for animation or locomotion work.",
+      "source": {
+        "path": ".bridge/PROJECT_STATE.md",
+        "sections": [
+          "## Full-body walking correction",
+          "## Verified animations",
+          "## Gameplay-camera evidence"
+        ]
+      },
+      "stages": ["start", "implement", "verify", "resume"],
+      "domains": ["blender", "coding"],
+      "artifacts": ["animation", "game"],
+      "priority": 40
+    },
+    {
+      "id": "fox-v5-export-evidence",
+      "kind": "state",
+      "description": "Current export/browser integration evidence and relevant file tree.",
+      "source": {
+        "path": ".bridge/PROJECT_STATE.md",
+        "sections": [
+          "## Export and browser integration",
+          "## Current relevant tree"
+        ]
+      },
+      "stages": ["verify", "resume"],
+      "domains": ["blender", "coding"],
+      "actions": ["verify", "review", "test"],
+      "artifacts": ["asset", "model-3d", "game"],
+      "priority": 35
+    }
+  ]
+}
